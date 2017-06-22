@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- https://wiki.onap.org/display/DW/Building+Entire+ONAP -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.onap</groupId>
+  <artifactId>org.onap</artifactId>
+  <version>1.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>onap.root</name>
+  <url>http://maven.apache.org</url>
+  <modules>
+    <module>aai/aai-common</module> <!-- needs yang exclude -->
+    <module>aai/aai-service</module>
+    <module>aai/logging-service</module>
+    <module>aai/model-loader</module>
+    <module>aai/rest-client</module> <!-- include the onap staging nexus repo for common-logging:jar:1.0.0, org.openecomp.aai.logging-service:eelf-logging:jar:1.0.0, org.openecomp.aai.logging-service:logging-api:jar:1.0.0 -->
+    <module>aai/router-core</module>
+<module>aai/search-data-service</module>
+<!--module>appc/deployment</module--> <!-- manual override input required -->
+    <module>dcae/apod/analytics</module>
+    <module>dcae/collectors/ves</module> <!-- https://wiki.opnfv.org/display/PROJ/VNF+Event+Stream -->
+    <module>dcae/controller/analytics</module>
+    <module>dcae/controller/dcae-controller-core</module>
+    <module>dcae/controller/dcae-controller-service/dcae-controller-service-dmaap-drsub</module>
+    <module>dcae/controller/dcae-controller-service-cdap</module>
+    <module>dcae/controller/dcae-controller-service-docker</module>
+    <module>dcae/controller/dcae-controller-service-vm</module>
+    <module>dcae/dcae-inventory</module>
+    <module>dcae/demo</module>
+    <module>dcae/dmaapbc</module>
+    <module>dcae/operation/utils</module> <!-- emf fixed by onap public repo -->
+    <!--module>demo</module--> <!-- error in parent refs in sample_plugin -->
+    <module>ecompsdkos/ecomp-sdk</module>
+    <module>mso</module>
+    <module>ncomp/cdap</module> <!-- emf resolution -->
+    <module>ncomp/core</module>
+    <module>ncomp/docker</module>
+    <module>ncomp/maven</module>
+    <module>ncomp/openstack</module>
+    <module>ncomp/utils</module>
+    <module>policy/common</module>
+    <module>policy/docker</module>
+    <module>policy/drools-applications</module>
+    <module>policy/drools-pdp</module>
+    <module>policy/engine</module>
+    <module>portal/ecomp-portal-FE-common</module> <!-- parent not referenced -->
+    <module>portal</module>
+<!--module>sdc</module--> <!-- breakout root project--><!-- in catalog-be org/openrdf/sesame/sesame-rio-rdfjson/2.7.10/sesame-rio-rdfjson-2.7.10.jar; error in opening zip file-->
+<!-- in onboarding-ui-war of sdc/openecomp-ui onboarding-fe: Process: /tmp/nodejs/node-v7.5.0-darwin-x64/bin/node /tmp/nodejs/node_modules/webpack/bin/webpack terminated with 255-->
+
+<module>sdc/security-utils</module>
+<module>sdc/common-app-api</module>
+<module>sdc/common-be</module>
+<module>sdc/catalog-dao</module>
+<module>sdc/catalog-model</module>
+<module>sdc/catalog-be</module>
+<module>sdc/asdctool</module>
+<module>sdc/catalog-ui</module>
+<module>sdc/catalog-fe</module>
+<module>sdc/asdc-tests</module>
+<module>sdc/ui-ci</module>
+<module>sdc/openecomp-be</module>
+<!--module>sdc/openecomp-ui</module--> <!--onboarding-fe: Process: /tmp/nodejs/node-v7.5.0-darwin-x64/bin/node /tmp/nodejs/node_modules/webpack/bin/webpack terminated with 255-->
+<module>sdc/sdc-os-chef</module>
+<module>sdnc/adaptors</module> <!-- sdnc/sli/aai/AAIClient.java:30  in sdnc/core/sliPluginUtils-->
+<module>sdnc/core</module> <!-- Felix issues in sdnc/core/slapi/provider  and sdnc/core/sli/provider-->
+    <module>sdnc/northbound</module> <!-- package org.opendaylight.controller.config.spi na -->
+    <module>sdnc/oam</module>
+    <module>sdnc/plugins</module><!-- package org.codehaus.jettison.json does not exist -->
+    <module>ui/dmaapbc</module>
+    <module>vid</module>
+  </modules>
+</project>
