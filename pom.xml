@@ -4,21 +4,173 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.onap</groupId>
   <artifactId>org.onap</artifactId>
+  
   <version>1.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>onap.root</name>
   <url>http://maven.apache.org</url>
+  
+  <!-- 1.1.0/R1 specific (post Jun 2017) - current master 20170731 -->
+  <!-- note new repos are indended -->
+  <!-- mvn clean install -U  -DskipTests=true -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -->
+
   <modules>
-    <module>aai/aai-common</module> <!-- needs yang exclude -->
+<!--module>aaf/authz</module>
+<module>aaf/cadi</module>
+<module>aaf/inno</module-->
+      <module>aai/aai-common</module> <!-- needs yang exclude -->
+<!--module>aai/aai-data</module>
+<module>aai/aai-config</module>
+<module>aai/babel</module>
+<module>aai/champ</module>
+<module>aai/gizmo</module-->
+      <module>aai/aai-service</module>
+<!--module>aai/aai-data-router</module-->
+      <module>aai/logging-service</module>
+      <module>aai/model-loader</module>
+      <module>aai/rest-client</module> <!-- include the onap staging nexus repo for common-logging:jar:1.0.0, org.openecomp.aai.logging-service:eelf-logging:jar:1.0.0, org.openecomp.aai.logging-service:logging-api:jar:1.0.0 -->
+      <module>aai/router-core</module>
+      <module>aai/search-data-service</module>
+<module>aai/sparky-be</module>
+<module>aai/sparky-fe</module>
+<!--module>aai/test-config</module-->
+<module>aai/traversal</module>
+    <!--module>appc/deployment</module--> <!-- manual override input required -->
+<!-- ccsdk in common with sdnc -->
+<module>ccsdk/parent</module>
+<!--module>ccsdk/sli/adaptors</module>
+<module>ccsdk/sli/core</module>
+<module>ccsdk/sli/northbound</module>
+<module>ccsdk/sli/plugins</module>
+<module>ccsdk/storage/esaas</module>
+<module>ccsdk/storage/pgaas</module-->
+<module>clamp</module>
+<module>cli</module>
+
+      <!-- all of dcae replaced by dcaegen2 ? TBD -->
+      <module>dcae/apod/analytics</module>
+      <module>dcae/collectors/ves</module>
+      <module>dcae/controller/analytics</module>
+      <module>dcae/controller/dcae-controller-core</module>
+      <module>dcae/controller/dcae-controller-service/dcae-controller-service-dmaap-drsub</module>
+      <module>dcae/controller/dcae-controller-service-cdap</module>
+      <module>dcae/controller/dcae-controller-service-docker</module>
+      <module>dcae/controller/dcae-controller-service-vm</module>
+      <module>dcae/dcae-inventory</module>
+      <module>dcae/demo</module>
+      <module>dcae/dmaapbc</module>
+      <module>dcae/operation/utils</module>
+<!--module>dcaegen2/analytics</module>
+<module>dcaegen2/analytics/tca</module>
+<module>dcaegen2/collectors</module>
+<module>dcaegen2/collectors/snmptrap</module>
+<module>dcaegen2/collectors/ves</module>
+<module>dcaegen2/deployments</module>
+<module>dcaegen2/platform</module>
+<module>dcaegen2/platform/blueprints</module>
+<module>dcaegen2/platform/cli</module>
+<module>dcaegen2/platform/configbinding</module>
+<module>dcaegen2/platform/deployment-handler</module>
+<module>dcaegen2/platform/inventory-api</module>
+<module>dcaegen2/platform/plugins</module>
+<module>dcaegen2/platform/policy-handler</module>
+<module>dcaegen2/platform/registrator</module>
+<module>dcaegen2/platform/servicechange-handler</module>
+<module>dcaegen2/utils</module-->
+<!--module>dmaap/datarouter</module>
+<module>dmaap/messagerouter</module>
+<module>externalapi/nbi</module-->
+<!--module>holmes/common</module-->
+<!--module>holmes/dsa</module-->
+<!--module>holmes/engine-management</module-->
+<!--module>holmes/rule-management</module-->
+<!--module>integration</module>
+<module>modeling/toscaparsers</module>
+<module>modeling/yangvalidators</module>
+<module>msb/apigateway</module>
+<module>msb/discovery</module>
+<module>multicloud/azure</module>
+<module>multicloud/framework</module>
+<module>multicloud/openstack</module>
+<module>multicloud/openstack/vmware</module>
+<module>multicloud/openstack/windriver</module-->
+<!--module>oparent</module--> <!-- 1.0.0-SNAPSHOT does not build - (${nexusproxy}/${releaseNexusPath} -->
+<!--module>optf/cmso</module>
+<module>optf/has</module>
+<module>optf/osdf</module-->
+
+      <!--module>demo</module--> <!-- error in parent refs in sample_plugin -->
+      <module>ecompsdkos/ecomp-sdk</module>
+      <module>mso</module>
+      <module>ncomp/cdap</module> <!-- emf resolution -->
+      <module>ncomp/core</module>
+      <module>ncomp/docker</module>
+      <module>ncomp/maven</module>
+      <module>ncomp/openstack</module>
+<module>ncomp/sirius/manager</module>
+      <module>ncomp/utils</module>
+<!--module>oom</module-->
+<!--module>policy/api</module>
+<module>policy/gui</module>
+<module>policy/pap</module>
+<module>policy/pdp</module-->
+      <module>policy/common</module>
+      <module>policy/docker</module>
+      <module>policy/drools-applications</module>
+      <module>policy/drools-pdp</module>
+      <module>policy/engine</module>
+      <!--module>portal/ecomp-portal-FE-common</module--> <!-- parent not referenced -->
+      <module>portal</module>
+<!--module>portal/sdk</module-->
+      <!--module>sdc</module--> <!-- breakout root project--><!-- in catalog-be org/openrdf/sesame/sesame-rio-rdfjson/2.7.10/sesame-rio-rdfjson-2.7.10.jar; error in opening zip file-->
+      <!-- in onboarding-ui-war of sdc/openecomp-ui onboarding-fe: Process: /tmp/nodejs/node-v7.5.0-darwin-x64/bin/node /tmp/nodejs/node_modules/webpack/bin/webpack terminated with 255-->
+      <module>sdc/security-utils</module>
+      <module>sdc/common-app-api</module>
+      <module>sdc/common-be</module>
+      <module>sdc/catalog-dao</module>
+      <module>sdc/catalog-model</module>
+      <module>sdc/catalog-be</module>
+      <module>sdc/asdctool</module>
+      <module>sdc/catalog-ui</module>
+      <module>sdc/catalog-fe</module>
+      <module>sdc/asdc-tests</module>
+      <!--module>sdc/ui-ci</module-->
+      <module>sdc/openecomp-be</module>
+      <!--module>sdc/openecomp-ui</module--> <!--onboarding-fe: Process: /tmp/nodejs/node-v7.5.0-darwin-x64/bin/node /tmp/nodejs/node_modules/webpack/bin/webpack terminated with 255-->
+      <module>sdc/sdc-os-chef</module>
+<module>sdc/jtosca</module>
+<module>sdc/sdc-tosca</module>
+<!--module>sdc/sdc-docker-base</module-->
+<module>sdc/sdc-distribution-client</module>
+<!--module>sdc/sdc-workflow-designer</module-->
+<!--module>sdc/sdc-vnfdesign</module-->
+<module>sdc/sdc_common</module>
+<!--module>sdnc/architecture</module>
+<module>sdnc/features</module>
+<module>sdnc/parent</module-->
+
+      <module>sdnc/adaptors</module> <!-- sdnc/sli/aai/AAIClient.java:30  in sdnc/core/sliPluginUtils-->
+      <module>sdnc/core</module> <!-- Felix issues in sdnc/core/slapi/provider  and sdnc/core/sli/provider-->
+      <module>sdnc/northbound</module> <!-- package org.opendaylight.controller.config.spi na -->
+      <module>sdnc/oam</module>
+      <module>sdnc/plugins</module><!-- package org.codehaus.jettison.json does not exist -->
+<!-- replaces mso -->
+<module>so</module>
+      <module>ui/dmaapbc</module>
+<!--module>usecase-ui</module-->
+      <module>vid</module>
+  </modules>
+  <!-- older June 2017 1.0.0/1.1.0-SNAPSHOT specific (pre R1)-->
+  <!--modules>
+    <module>aai/aai-common</module>
     <module>aai/aai-service</module>
     <module>aai/logging-service</module>
     <module>aai/model-loader</module>
-    <module>aai/rest-client</module> <!-- include the onap staging nexus repo for common-logging:jar:1.0.0, org.openecomp.aai.logging-service:eelf-logging:jar:1.0.0, org.openecomp.aai.logging-service:logging-api:jar:1.0.0 -->
+    <module>aai/rest-client</module>
     <module>aai/router-core</module>
-<module>aai/search-data-service</module>
-<!--module>appc/deployment</module--> <!-- manual override input required -->
+    <module>aai/search-data-service</module>
     <module>dcae/apod/analytics</module>
-    <module>dcae/collectors/ves</module> <!-- https://wiki.opnfv.org/display/PROJ/VNF+Event+Stream -->
+    <module>dcae/collectors/ves</module>
     <module>dcae/controller/analytics</module>
     <module>dcae/controller/dcae-controller-core</module>
     <module>dcae/controller/dcae-controller-service/dcae-controller-service-dmaap-drsub</module>
@@ -28,11 +180,10 @@
     <module>dcae/dcae-inventory</module>
     <module>dcae/demo</module>
     <module>dcae/dmaapbc</module>
-    <module>dcae/operation/utils</module> <!-- emf fixed by onap public repo -->
-    <!--module>demo</module--> <!-- error in parent refs in sample_plugin -->
+    <module>dcae/operation/utils</module>
     <module>ecompsdkos/ecomp-sdk</module>
     <module>mso</module>
-    <module>ncomp/cdap</module> <!-- emf resolution -->
+    <module>ncomp/cdap</module>
     <module>ncomp/core</module>
     <module>ncomp/docker</module>
     <module>ncomp/maven</module>
@@ -43,31 +194,25 @@
     <module>policy/drools-applications</module>
     <module>policy/drools-pdp</module>
     <module>policy/engine</module>
-    <module>portal/ecomp-portal-FE-common</module> <!-- parent not referenced -->
     <module>portal</module>
-<!--module>sdc</module--> <!-- breakout root project--><!-- in catalog-be org/openrdf/sesame/sesame-rio-rdfjson/2.7.10/sesame-rio-rdfjson-2.7.10.jar; error in opening zip file-->
-<!-- in onboarding-ui-war of sdc/openecomp-ui onboarding-fe: Process: /tmp/nodejs/node-v7.5.0-darwin-x64/bin/node /tmp/nodejs/node_modules/webpack/bin/webpack terminated with 255-->
-
-<module>sdc/security-utils</module>
-<module>sdc/common-app-api</module>
-<module>sdc/common-be</module>
-<module>sdc/catalog-dao</module>
-<module>sdc/catalog-model</module>
-<module>sdc/catalog-be</module>
-<module>sdc/asdctool</module>
-<module>sdc/catalog-ui</module>
-<module>sdc/catalog-fe</module>
-<module>sdc/asdc-tests</module>
-<module>sdc/ui-ci</module>
-<module>sdc/openecomp-be</module>
-<!--module>sdc/openecomp-ui</module--> <!--onboarding-fe: Process: /tmp/nodejs/node-v7.5.0-darwin-x64/bin/node /tmp/nodejs/node_modules/webpack/bin/webpack terminated with 255-->
-<module>sdc/sdc-os-chef</module>
-<module>sdnc/adaptors</module> <!-- sdnc/sli/aai/AAIClient.java:30  in sdnc/core/sliPluginUtils-->
-<module>sdnc/core</module> <!-- Felix issues in sdnc/core/slapi/provider  and sdnc/core/sli/provider-->
-    <module>sdnc/northbound</module> <!-- package org.opendaylight.controller.config.spi na -->
+    <module>sdc/security-utils</module>
+    <module>sdc/common-app-api</module>
+    <module>sdc/common-be</module>
+    <module>sdc/catalog-dao</module>
+    <module>sdc/catalog-model</module>
+    <module>sdc/catalog-be</module>
+    <module>sdc/asdctool</module>
+    <module>sdc/catalog-ui</module>
+    <module>sdc/catalog-fe</module>
+    <module>sdc/asdc-tests</module>
+    <module>sdc/openecomp-be</module>
+    <module>sdc/sdc-os-chef</module>
+    <module>sdnc/adaptors</module>
+    <module>sdnc/core</module>
+    <module>sdnc/northbound</module>
     <module>sdnc/oam</module>
-    <module>sdnc/plugins</module><!-- package org.codehaus.jettison.json does not exist -->
+    <module>sdnc/plugins</module>
     <module>ui/dmaapbc</module>
     <module>vid</module>
-  </modules>
+  </modules-->
 </project>
