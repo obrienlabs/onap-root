@@ -19,13 +19,13 @@
 <module>aaf/cadi</module>
 <module>aaf/inno</module-->
       <module>aai/aai-common</module> <!-- needs yang exclude -->
-<!--module>aai/aai-data</module>
-<module>aai/aai-config</module>
-<module>aai/babel</module>
+<!--module>aai/aai-data</module--> <!-- chef cookbooks only -->
+<!--module>aai/aai-config</module--> <!-- chef cookbooks only -->
+<!--module>aai/babel</module--> <!-- empty -->
 <module>aai/champ</module>
-<module>aai/gizmo</module-->
+<!--module>aai/gizmo</module--> <!-- empty -->
       <module>aai/aai-service</module>
-<!--module>aai/aai-data-router</module-->
+<module>aai/data-router</module>
       <module>aai/logging-service</module>
       <module>aai/model-loader</module>
       <module>aai/rest-client</module> <!-- include the onap staging nexus repo for common-logging:jar:1.0.0, org.openecomp.aai.logging-service:eelf-logging:jar:1.0.0, org.openecomp.aai.logging-service:logging-api:jar:1.0.0 -->
@@ -33,7 +33,7 @@
       <module>aai/search-data-service</module>
 <module>aai/sparky-be</module>
 <module>aai/sparky-fe</module>
-<!--module>aai/test-config</module-->
+<!--module>aai/test-config</module--> <!-- no pom -->
 <module>aai/traversal</module>
     <!--module>appc/deployment</module--> <!-- manual override input required -->
 <!-- ccsdk in common with sdnc -->
@@ -84,8 +84,9 @@
 <!--module>holmes/dsa</module-->
 <!--module>holmes/engine-management</module-->
 <!--module>holmes/rule-management</module-->
-<!--module>integration</module>
-<module>modeling/toscaparsers</module>
+<!--module>integration</module-->
+<!--module>logging-analytics</module-->
+<!--module>modeling/toscaparsers</module>
 <module>modeling/yangvalidators</module>
 <module>msb/apigateway</module>
 <module>msb/discovery</module>
@@ -94,7 +95,7 @@
 <module>multicloud/openstack</module>
 <module>multicloud/openstack/vmware</module>
 <module>multicloud/openstack/windriver</module-->
-<!--module>oparent</module--> <!-- 1.0.0-SNAPSHOT does not build - (${nexusproxy}/${releaseNexusPath} -->
+<module>oparent</module>
 <!--module>optf/cmso</module>
 <module>optf/has</module>
 <module>optf/osdf</module-->

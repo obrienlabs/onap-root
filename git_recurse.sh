@@ -391,6 +391,7 @@ eval "$GIT_COMMAND/holmes/engine-management"
 eval "$GIT_COMMAND/holmes/rule-management"
 cd ..
 eval "$GIT_COMMAND/integration"
+eval "$GIT_COMMAND/logging-analytics"
 mkdir modeling
 cd modeling
 eval "$GIT_COMMAND/modeling/toscaparsers"
