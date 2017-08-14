@@ -427,7 +427,13 @@ cd ../../
 #eval "$GIT_COMMAND/ncomp/sirius"
 #eval "$GIT_COMMAND/ncomp/sirius/manager"
 #eval "$GIT_COMMAND/ncomp/utils"
-eval "$GIT_COMMAND/oom"
+
+#eval "$GIT_COMMAND/oom"
+cd oom
+#mkdir registrator
+
+eval "$GIT_COMMAND/oom/registrator"
+cd ../
 eval "$GIT_COMMAND/oparent"
 mkdir optf
 cd optf
