@@ -316,6 +316,7 @@ mkdir ccsdk
 #eval "$GIT_COMMAND/ccsdk"
 cd ccsdk
 eval "$GIT_COMMAND/ccsdk/parent"
+eval "$GIT_COMMAND/ccsdk/sli"
 mkdir sli
 cd sli
 eval "$GIT_COMMAND/ccsdk/sli/adaptors"
@@ -336,7 +337,8 @@ eval "$GIT_COMMAND/ccsdk/platform/nbapi"
 eval "$GIT_COMMAND/ccsdk/platform/plugins"
 cd ..
 eval "$GIT_COMMAND/ccsdk/utils"
-
+eval "$GIT_COMMAND/ccsdk/dashboard"
+eval "$GIT_COMMAND/ccsdk/distribution"
 
 #eval "$GIT_COMMAND/ci-management"
 cd ..
@@ -402,7 +404,7 @@ eval "$GIT_COMMAND/dmaap/datarouter"
 eval "$GIT_COMMAND/dmaap/messagerouter"
 mkdir messagerouter
 cd messagerouter
-eval "$GIT_COMMAND/dmaap/messagerouter/dmaapcllient"
+eval "$GIT_COMMAND/dmaap/messagerouter/dmaapclient"
 eval "$GIT_COMMAND/dmaap/messagerouter/messageservice"
 eval "$GIT_COMMAND/dmaap/messagerouter/mirroragent"
 eval "$GIT_COMMAND/dmaap/messagerouter/msgrtr"
@@ -472,6 +474,7 @@ eval "$GIT_COMMAND/oom"
 cd oom
 eval "$GIT_COMMAND/oom/registrator"
 cd ..
+eval "$GIT_COMMAND/onap-cli"
 eval "$GIT_COMMAND/oparent"
 eval "$GIT_COMMAND/optf/cmso"
 mkdir optf
@@ -530,23 +533,35 @@ eval "$GIT_COMMAND/vfc"
 mkdir vfc
 cd vfc
 eval "$GIT_COMMAND/vfc/gvnfm"
+mkdir gvnfm
 cd gvnfm
 eval "$GIT_COMMAND/vfc/gvnfm/vnflcm"
 eval "$GIT_COMMAND/vfc/gvnfm/vnfmgr"
 eval "$GIT_COMMAND/vfc/gvnfm/vnfres"
-cd ../nfvo
+cd ..
+eval "$GIT_COMMAND/vfc/nfvo"
+mkdir nfvo
+cd nfvo
 eval "$GIT_COMMAND/vfc/nfvo/catalog"
+eval "$GIT_COMMAND/vfc/nfvo/driver"
+mkdir driver
+cd driver
 eval "$GIT_COMMAND/vfc/nfvo/driver/ems"
 eval "$GIT_COMMAND/vfc/nfvo/driver/sfc"
+eval "$GIT_COMMAND/vfc/nfvo/driver/vnfm"
+mkdir vnfm
+cd vnfm
 eval "$GIT_COMMAND/vfc/nfvo/driver/vnfm/gvnfm"
 eval "$GIT_COMMAND/vfc/nfvo/driver/vnfm/svnfm"
+cd ../..
 eval "$GIT_COMMAND/vfc/nfvo/lcm"
 eval "$GIT_COMMAND/vfc/nfvo/resmanagement"
 eval "$GIT_COMMAND/vfc/nfvo/wfengine"
-cd ../..
+cd ..
 #eval "$GIT_COMMAND/vid"
 #eval "$GIT_COMMAND/vid/asdcclient"
 cd ..
+eval "$GIT_COMMAND/vnfrqts"
 mkdir vnfrqts
 cd vnfrqts
 eval "$GIT_COMMAND/vnfrqts/epics"
@@ -555,6 +570,7 @@ eval "$GIT_COMMAND/vnfrqts/requirements"
 eval "$GIT_COMMAND/vnfrqts/testcases"
 eval "$GIT_COMMAND/vnfrqts/usecases"
 cd ..
+eval "$GIT_COMMAND/vnfsdk"
 mkdir vnfsdk
 cd vnfsdk
 eval "$GIT_COMMAND/vnfsdk/compliance"
@@ -565,6 +581,7 @@ eval "$GIT_COMMAND/vnfsdk/pkgtools"
 eval "$GIT_COMMAND/vnfsdk/refrepo"
 eval "$GIT_COMMAND/vnfsdk/validation"
 cd ..
+eval "$GIT_COMMAND/vvp"
 mkdir vvp
 cd vvp
 eval "$GIT_COMMAND/vvp/ansible-ice-bootstrap"
