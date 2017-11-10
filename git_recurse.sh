@@ -6,6 +6,7 @@
 # 20170531 add git clone https support (for users behind a firewall)
 # 20170730 add 1.1/R1 repos
 # 20170831 update R1, disable mso, dcae
+# 20171110 deprecate aai-service, add new aai esr repos
 
 USAGE="Usage: $0 { pull | clone <LF id> | clone_https <LF ID> <GERRIT password>}"
 echo "action: $1"
@@ -13,7 +14,7 @@ echo "action: $1"
 declare -a repos=(
 "aai/aai-data"
 "aai/aai-config"
-"aai/aai-service"
+#"aai/aai-service"
 "aai/data-router"
 "aai/logging-service"
 "aai/model-loader"
@@ -151,6 +152,7 @@ eval "$GIT_COMMAND/aai/sparky-fe"
 eval "$GIT_COMMAND/aai/test-config"
 eval "$GIT_COMMAND/aai/traversal"
 cd ..
+eval "$GIT_COMMAND/appc"
 mkdir appc
 cd appc
 eval "$GIT_COMMAND/appc/deployment"
@@ -202,7 +204,7 @@ eval "$GIT_COMMAND/ci-management"
 #eval "$GIT_COMMAND/dcae/utils/buildtools"
 #cd ../../
 eval "$GIT_COMMAND/demo"
-eval "$GIT_COMMAND/ecompsdkos"
+#eval "$GIT_COMMAND/ecompsdkos"
 #eval "$GIT_COMMAND/mso"
 #mkdir mso
 #cd mso
@@ -211,21 +213,21 @@ eval "$GIT_COMMAND/ecompsdkos"
 #eval "$GIT_COMMAND/mso/libs"
 #eval "$GIT_COMMAND/mso/mso-config"
 #cd ..
-eval "$GIT_COMMAND/ncomp"
-mkdir ncomp
-cd ncomp
-eval "$GIT_COMMAND/ncomp/cdap"
-eval "$GIT_COMMAND/ncomp/core"
-eval "$GIT_COMMAND/ncomp/docker"
-eval "$GIT_COMMAND/ncomp/maven"
-eval "$GIT_COMMAND/ncomp/openstack"
-eval "$GIT_COMMAND/ncomp/sirius"
-mkdir sirius
-cd sirius
-eval "$GIT_COMMAND/ncomp/sirius/manager"
-cd ..
-eval "$GIT_COMMAND/ncomp/utils"
-cd ..
+#eval "$GIT_COMMAND/ncomp"
+#mkdir ncomp
+#cd ncomp
+#eval "$GIT_COMMAND/ncomp/cdap"
+#eval "$GIT_COMMAND/ncomp/core"
+#eval "$GIT_COMMAND/ncomp/docker"
+#eval "$GIT_COMMAND/ncomp/maven"
+#eval "$GIT_COMMAND/ncomp/openstack"
+#eval "$GIT_COMMAND/ncomp/sirius"
+#mkdir sirius
+#cd sirius
+#eval "$GIT_COMMAND/ncomp/sirius/manager"
+#cd ..
+#eval "$GIT_COMMAND/ncomp/utils"
+#cd ..
 eval "$GIT_COMMAND/oom"
 mkdir oom
 cd oom
@@ -248,10 +250,10 @@ eval "$GIT_COMMAND/sdc/sdc-distribution-client"
 # 3 below 20170731
 eval "$GIT_COMMAND/sdc/sdc-docker-base"
 eval "$GIT_COMMAND/sdc/sdc-workflow-designer"
-eval "$GIT_COMMAND/sdc/sdc-vnfdesign"
+#eval "$GIT_COMMAND/sdc/sdc-vnfdesign"
 # no head
 eval "$GIT_COMMAND/sdc/sdc-titan-cassandra"
-eval "$GIT_COMMAND/sdc/sdc_common"
+#eval "$GIT_COMMAND/sdc/sdc_common"
 cd ..
 mkdir sdnc
 cd sdnc
@@ -311,12 +313,17 @@ eval "$GIT_COMMAND/aai/gizmo"
 #eval "$GIT_COMMAND/aai/traversal"
 #eval "$GIT_COMMAND/appc"
 #eval "$GIT_COMMAND/appc/deployment"
+eval "$GIT_COMMAND/aai/esr-gui"
+eval "$GIT_COMMAND/aai/esr-server"
 cd ..
 mkdir ccsdk
 #eval "$GIT_COMMAND/ccsdk"
 cd ccsdk
 eval "$GIT_COMMAND/ccsdk/parent"
-eval "$GIT_COMMAND/ccsdk/sli"
+#eval "$GIT_COMMAND/ccsdk/sli"
+eval "$GIT_COMMAND/ccsdk/dashboard"
+eval "$GIT_COMMAND/ccsdk/distribution"
+eval "$GIT_COMMAND/ccsdk/parent"
 mkdir sli
 cd sli
 eval "$GIT_COMMAND/ccsdk/sli/adaptors"
@@ -324,7 +331,7 @@ eval "$GIT_COMMAND/ccsdk/sli/core"
 eval "$GIT_COMMAND/ccsdk/sli/northbound"
 eval "$GIT_COMMAND/ccsdk/sli/plugins"
 cd ..
-eval "$GIT_COMMAND/ccsdk/storage"
+#eval "$GIT_COMMAND/ccsdk/storage"
 mkdir storage
 cd storage
 eval "$GIT_COMMAND/ccsdk/storage/esaas"
@@ -395,13 +402,13 @@ cd ..
 eval "$GIT_COMMAND/dcaegen2/utils"
 #eval "$GIT_COMMAND/demo"
 cd ..
-eval "$GIT_COMMAND/dmaap"
+#eval "$GIT_COMMAND/dmaap"
 mkdir dmaap
 cd dmaap
 eval "$GIT_COMMAND/dmaap/buscontroller"
 eval "$GIT_COMMAND/dmaap/dbcapi"
 eval "$GIT_COMMAND/dmaap/datarouter"
-eval "$GIT_COMMAND/dmaap/messagerouter"
+#eval "$GIT_COMMAND/dmaap/messagerouter"
 mkdir messagerouter
 cd messagerouter
 eval "$GIT_COMMAND/dmaap/messagerouter/dmaapclient"
@@ -429,27 +436,22 @@ eval "$GIT_COMMAND/holmes/rule-management"
 cd ..
 eval "$GIT_COMMAND/integration"
 eval "$GIT_COMMAND/logging-analytics"
-eval "$GIT_COMMAND/modeling"
+#eval "$GIT_COMMAND/modeling"
 mkdir modeling
 cd modeling
 eval "$GIT_COMMAND/modeling/modelspec"
 eval "$GIT_COMMAND/modeling/toscaparsers"
 eval "$GIT_COMMAND/modeling/yangvalidators"
 cd ..
-eval "$GIT_COMMAND/msb"
+#eval "$GIT_COMMAND/msb"
 mkdir msb
 cd msb
 eval "$GIT_COMMAND/msb/apigateway"
 eval "$GIT_COMMAND/msb/discovery"
 eval "$GIT_COMMAND/msb/java-sdk"
 eval "$GIT_COMMAND/msb/swagger-sdk"
-#eval "$GIT_COMMAND/mso"
-#eval "$GIT_COMMAND/mso/chef-repo"
-#eval "$GIT_COMMAND/mso/docker-config"
-#eval "$GIT_COMMAND/mso/libs"
-#eval "$GIT_COMMAND/mso/mso-config"
 cd ..
-eval "$GIT_COMMAND/multicloud"
+#eval "$GIT_COMMAND/multicloud"
 mkdir multicloud
 cd multicloud
 eval "$GIT_COMMAND/multicloud/azure"
@@ -461,22 +463,12 @@ eval "$GIT_COMMAND/multicloud/openstack/vmware"
 eval "$GIT_COMMAND/multicloud/openstack/windriver"
 # aws
 cd ../../
-#eval "$GIT_COMMAND/ncomp"
-#eval "$GIT_COMMAND/ncomp/cdap"
-#eval "$GIT_COMMAND/ncomp/core"
-#eval "$GIT_COMMAND/ncomp/docker"
-#eval "$GIT_COMMAND/ncomp/maven"
-#eval "$GIT_COMMAND/ncomp/openstack"
-#eval "$GIT_COMMAND/ncomp/sirius"
-#eval "$GIT_COMMAND/ncomp/sirius/manager"
-#eval "$GIT_COMMAND/ncomp/utils"
 eval "$GIT_COMMAND/oom"
 cd oom
 eval "$GIT_COMMAND/oom/registrator"
 cd ..
-eval "$GIT_COMMAND/onap-cli"
+eval "$GIT_COMMAND/cli"
 eval "$GIT_COMMAND/oparent"
-eval "$GIT_COMMAND/optf/cmso"
 mkdir optf
 cd optf
 eval "$GIT_COMMAND/optf/cmso"
@@ -514,7 +506,7 @@ eval "$GIT_COMMAND/sdnc/parent"
 cd ../
 
 eval "$GIT_COMMAND/so"
-mkdir so
+#mkdir so
 cd so
 eval "$GIT_COMMAND/so/chef-repo"
 eval "$GIT_COMMAND/so/docker-config"
@@ -529,17 +521,17 @@ eval "$GIT_COMMAND/so/so-config"
 cd ..
 eval "$GIT_COMMAND/university"
 eval "$GIT_COMMAND/usecase-ui"
-eval "$GIT_COMMAND/vfc"
+#eval "$GIT_COMMAND/vfc"
 mkdir vfc
 cd vfc
-eval "$GIT_COMMAND/vfc/gvnfm"
+#eval "$GIT_COMMAND/vfc/gvnfm"
 mkdir gvnfm
 cd gvnfm
 eval "$GIT_COMMAND/vfc/gvnfm/vnflcm"
 eval "$GIT_COMMAND/vfc/gvnfm/vnfmgr"
 eval "$GIT_COMMAND/vfc/gvnfm/vnfres"
 cd ..
-eval "$GIT_COMMAND/vfc/nfvo"
+#eval "$GIT_COMMAND/vfc/nfvo" #
 mkdir nfvo
 cd nfvo
 eval "$GIT_COMMAND/vfc/nfvo/catalog"
@@ -548,7 +540,7 @@ mkdir driver
 cd driver
 eval "$GIT_COMMAND/vfc/nfvo/driver/ems"
 eval "$GIT_COMMAND/vfc/nfvo/driver/sfc"
-eval "$GIT_COMMAND/vfc/nfvo/driver/vnfm"
+# eval "$GIT_COMMAND/vfc/nfvo/driver/vnfm"
 mkdir vnfm
 cd vnfm
 eval "$GIT_COMMAND/vfc/nfvo/driver/vnfm/gvnfm"
@@ -561,7 +553,7 @@ cd ..
 #eval "$GIT_COMMAND/vid"
 #eval "$GIT_COMMAND/vid/asdcclient"
 cd ..
-eval "$GIT_COMMAND/vnfrqts"
+#eval "$GIT_COMMAND/vnfrqts"
 mkdir vnfrqts
 cd vnfrqts
 eval "$GIT_COMMAND/vnfrqts/epics"
@@ -570,7 +562,7 @@ eval "$GIT_COMMAND/vnfrqts/requirements"
 eval "$GIT_COMMAND/vnfrqts/testcases"
 eval "$GIT_COMMAND/vnfrqts/usecases"
 cd ..
-eval "$GIT_COMMAND/vnfsdk"
+#eval "$GIT_COMMAND/vnfsdk"
 mkdir vnfsdk
 cd vnfsdk
 eval "$GIT_COMMAND/vnfsdk/compliance"
@@ -581,7 +573,7 @@ eval "$GIT_COMMAND/vnfsdk/pkgtools"
 eval "$GIT_COMMAND/vnfsdk/refrepo"
 eval "$GIT_COMMAND/vnfsdk/validation"
 cd ..
-eval "$GIT_COMMAND/vvp"
+#eval "$GIT_COMMAND/vvp"
 mkdir vvp
 cd vvp
 eval "$GIT_COMMAND/vvp/ansible-ice-bootstrap"
@@ -594,7 +586,11 @@ eval "$GIT_COMMAND/vvp/image-scanner"
 eval "$GIT_COMMAND/vvp/jenkins"
 eval "$GIT_COMMAND/vvp/portal"
 eval "$GIT_COMMAND/vvp/postgresql"
+eval "$GIT_COMMAND/vvp/test-engine"
 eval "$GIT_COMMAND/vvp/validation-scripts"
+
+cd ..
+
 }
 
 
