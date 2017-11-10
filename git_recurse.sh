@@ -285,7 +285,7 @@ cd ..
 # the issue with full automation via below - is there is no 1.0/1.1/R1 filter
 # https://gerrit.onap.org/r/projects/?format=text
 
-eval "$GIT_COMMAND/aaf"
+#eval "$GIT_COMMAND/aaf"
 mkdir aaf
 cd aaf
 eval "$GIT_COMMAND/aaf/authz"
@@ -350,7 +350,6 @@ eval "$GIT_COMMAND/ccsdk/distribution"
 #eval "$GIT_COMMAND/ci-management"
 cd ..
 eval "$GIT_COMMAND/clamp"
-eval "$GIT_COMMAND/cli"
 #eval "$GIT_COMMAND/dcae"
 #eval "$GIT_COMMAND/dcae/apod"
 #eval "$GIT_COMMAND/dcae/apod/analytics"
@@ -441,7 +440,7 @@ mkdir modeling
 cd modeling
 eval "$GIT_COMMAND/modeling/modelspec"
 eval "$GIT_COMMAND/modeling/toscaparsers"
-eval "$GIT_COMMAND/modeling/yangvalidators"
+#eval "$GIT_COMMAND/modeling/yangvalidators"
 cd ..
 #eval "$GIT_COMMAND/msb"
 mkdir msb
@@ -457,16 +456,12 @@ cd multicloud
 eval "$GIT_COMMAND/multicloud/azure"
 eval "$GIT_COMMAND/multicloud/framework"
 eval "$GIT_COMMAND/multicloud/openstack"
-mkdir openstack
+#mkdir openstack
 cd openstack
 eval "$GIT_COMMAND/multicloud/openstack/vmware"
 eval "$GIT_COMMAND/multicloud/openstack/windriver"
 # aws
 cd ../../
-eval "$GIT_COMMAND/oom"
-cd oom
-eval "$GIT_COMMAND/oom/registrator"
-cd ..
 eval "$GIT_COMMAND/cli"
 eval "$GIT_COMMAND/oparent"
 mkdir optf
@@ -535,7 +530,7 @@ cd ..
 mkdir nfvo
 cd nfvo
 eval "$GIT_COMMAND/vfc/nfvo/catalog"
-eval "$GIT_COMMAND/vfc/nfvo/driver"
+#eval "$GIT_COMMAND/vfc/nfvo/driver"
 mkdir driver
 cd driver
 eval "$GIT_COMMAND/vfc/nfvo/driver/ems"
