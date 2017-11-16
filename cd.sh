@@ -18,7 +18,7 @@ echo "sleeping 2 min"
 # replace with watc
 # keep jenkins 120 sec timeout happy with echos
 sleep 120
-sudo chmod 777 /dockerdata-nfs
+sudo chmod -R 777 /dockerdata-nfs
 rm -rf /dockerdata-nfs/onap
 rm -rf oom
 
