@@ -90,9 +90,16 @@ echo "check filebeat 2/2 count"
 FILEBEAT=$(kubectl get pods --all-namespaces -a | grep 2/)
 echo "${FILEBEAT}"
 
-echo "run healthcheck"
+echo "run healthcheck 3 times to warm caches and frameworks so rest enpoints to report properly - see OOM-447"
+
 cd /dockerdata-nfs/onap/robot/
-./ete-k8s.sh health
+echo "run healthcheck prep 1"
+./ete-k8s.sh health > health1.out
+echo "run healthcheck prep 2"
+./ete-k8s.sh health > health2.out
+echo "run healthcheck for real - wait a further 4 min"
+sleep 240
+./ete-k8s.sh health 
 
 echo "run partial vFW"
 sudo chmod 777 /dockerdata-nfs/onap
