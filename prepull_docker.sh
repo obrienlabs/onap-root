@@ -1,3 +1,4 @@
+#! /bin/bash
 NEXUS3=nexus3.onap.org:10001
 docker login -u docker -p docker nexus3.onap.org:10001
 echo "running docker image pulls in parallel"

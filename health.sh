@@ -1,3 +1,4 @@
+#! /bin/bash
 ssh root@aai1 -o StrictHostKeyChecking=no 'docker ps'
 ssh root@aai2 -o StrictHostKeyChecking=no 'docker ps'
 ssh root@appc -o StrictHostKeyChecking=no 'docker ps'
