@@ -104,7 +104,7 @@ pull() {
 clone() {
 	shift;
 	echo "clone for $@"
-	GIT_COMMAND="git clone ssh://$@@gerrit.openecomp.org:29418"
+	GIT_COMMAND="git clone ssh://$@@gerrit.onap.org:29418"
     actionClone
 }
 
