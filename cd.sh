@@ -51,7 +51,7 @@ chmod 777 prepull_docker.sh
 
 # usually the prepull takes up to 15 min - however hourly builds will finish the docker pulls before the config pod is finisheed
 echo "verify onap-config is 0/1 not 1/1 - as in completed"
-while [  $(kubectl get pods -n onap -a | grep config | grep 1/1 |  wc -l) -gt 0 ]; do
+while [  $(kubectl get pods -n onap -a | grep config | grep 0/1 |  wc -l) -gt 0 ]; do
     sleep 15
     echo "waiting for config pod to complete"
 done
@@ -87,7 +87,7 @@ cd oom/kubernetes/oneclick
 cd ../../../
 
 echo "wait for all pods up for 10 min"
-FAILED_PODS_LIMIT=3
+FAILED_PODS_LIMIT=2
 MAX_WAIT_PERIODS=80 # 20 MIN
 COUNTER=1
 while [  $(kubectl get pods --all-namespaces | grep 0/ | wc -l) -gt $FAILED_PODS_LIMIT ]; do
@@ -205,7 +205,9 @@ echo "sleep 4 min - to allow rest frameworks to finish"
 sleep 240
 echo "run healthcheck 3 times to warm caches and frameworks so rest enpoints to report properly - see OOM-447"
 
-cd /dockerdata-nfs/onap/robot/
+#cd /dockerdata-nfs/onap/robot/
+# OOM-484 - robot scripts moved
+cd oom/kubernetes/robot
 echo "run healthcheck prep 1"
 ./ete-k8s.sh health > ~/health1.out
 echo "run healthcheck prep 2"
