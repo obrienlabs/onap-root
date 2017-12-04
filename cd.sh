@@ -2,8 +2,18 @@
 # see INT-120
 #
 # do a chmod 777 on /dockerdata-nfs so e can delete the dir using the jenkins user
+usage() {
+  cat <<EOF
+Usage: $0 [PARAMs]
+-u                  : Display usage
+-b [branch]         : branch = master or release-1.1.0 (required)
+EOF
+}
+
+deploy_onap() {
 echo "$(date)"
-echo "provide onap-parameters.yaml, setenv.sh (overrides for apps)"
+echo "provide onap-parameters.yaml and prepull_docker.sh"
+#BRANCH=release-1.1.0
 
 # fix virtual memory for onap-log:elasticsearch under Rancher 1.6.11 - OOM-431
 sudo sysctl -w vm.max_map_count=262144
@@ -18,21 +28,23 @@ DELETED=$(kubectl get pods --all-namespaces -a | grep 0/ | wc -l)
 helm delete --purge onap-config
 # wait for 0/1 before deleting
 echo "sleeping 2 min"
-# replace with watc
+# replace with watch
 # keep jenkins 120 sec timeout happy with echos
-sleep 120
+sleep 60
+echo " deleting /dockerdata-nfs"
 sudo chmod -R 777 /dockerdata-nfs
 rm -rf /dockerdata-nfs/onap
 rm -rf oom
 
 #read -p "proc" yn
 echo "pull new oom"
-git clone http://gerrit.onap.org/r/oom
+git clone -b $BRANCH http://gerrit.onap.org/r/oom
 # patch for OOM-420
 
 
 #set -a
 echo "start config pod"
+# still need to source docker variables
 source oom/kubernetes/oneclick/setenv.bash
 #echo "source setenv override"
 #./helm_apps.bash
@@ -44,18 +56,25 @@ cd oom/kubernetes/config
 ./createConfig.sh -n onap
 cd ../../../
 
-echo "pre pull docker images"
-#curl https://jira.onap.org/secure/attachment/10501/prepull_docker.sh > prepull_docker.sh
-chmod 777 prepull_docker.sh
-./prepull_docker.sh
-
 # usually the prepull takes up to 15 min - however hourly builds will finish the docker pulls before the config pod is finisheed
-echo "verify onap-config is 0/1 not 1/1 - as in completed"
-while [  $(kubectl get pods -n onap -a | grep config | grep 0/1 |  wc -l) -gt 0 ]; do
+echo "verify onap-config is 0/1 not 1/1 - as in completed - an error pod - means you are missing onap-parameters.yaml or values are not set in it."
+while [  $(kubectl get pods -n onap -a | grep config | grep 0/1 | grep Completed | wc -l) -eq 0 ]; do
     sleep 15
     echo "waiting for config pod to complete"
 done
 
+echo "pre pull docker images"
+
+if [ "$BRANCH" = "master" ]; then
+    echo "pre pulling from master" # HACK
+    curl https://jira.onap.org/secure/attachment/10742/prepull_docker_master.sh > prepull_docker.sh
+else
+    echo "pre pulling from ${BRANCH}"
+    curl https://jira.onap.org/secure/attachment/10741/prepull_docker_110.sh > prepull_docker.sh
+fi
+
+chmod 777 prepull_docker.sh
+./prepull_docker.sh
 echo "start onap pods"
 cd oom/kubernetes/oneclick
 #./createAll.bash -n onap
@@ -87,9 +106,9 @@ cd oom/kubernetes/oneclick
 cd ../../../
 
 echo "wait for all pods up for 10 min"
-FAILED_PODS_LIMIT=2
-MAX_WAIT_PERIODS=80 # 20 MIN
-COUNTER=1
+FAILED_PODS_LIMIT=0
+MAX_WAIT_PERIODS=90 # 20 MIN
+COUNTER=0
 while [  $(kubectl get pods --all-namespaces | grep 0/ | wc -l) -gt $FAILED_PODS_LIMIT ]; do
     PENDING=$(kubectl get pods --all-namespaces | grep 0/ | wc -l)
     sleep 15
@@ -110,6 +129,8 @@ PENDING_COUNT_AAI=$(kubectl get pods -n onap-aai | grep 0/ | wc -l)
 if [ "$PENDING_COUNT_AAI" -gt 0 ]; then
     echo "down-aai=${PENDING_COUNT_AAI}"
 fi
+# todo don't stop if aai is down
+
 PENDING_COUNT_APPC=$(kubectl get pods -n onap-appc | grep 0/ | wc -l)
 if [ "$PENDING_COUNT_APPC" -gt 0 ]; then
     echo "down-appc=${PENDING_COUNT_APPC}"
@@ -224,3 +245,31 @@ echo "report results"
 cd ~/
 echo "$(date)"
 #set +a
+}
+
+BRANCH=
+
+while getopts ":b:u:" PARAM; do
+  case $PARAM in
+    u)
+      usage
+      exit 1
+      ;;
+    b)
+      BRANCH=${OPTARG}
+      ;;
+    ?)
+      usage
+      exit
+      ;;
+  esac
+done
+
+if [[ -z $BRANCH ]]; then
+  usage
+  exit 1
+fi
+
+deploy_onap  $BRANCH
+
+printf "**** Done ****\n"

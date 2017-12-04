@@ -33,7 +33,7 @@ docker pull $NEXUS3/onap/oom/kube2msb >/dev/null & #2>&1
 docker pull docker.elastic.co/logstash/logstash:5.4.3 & #>/dev/null 2>&1
 docker pull docker.elastic.co/kibana/kibana:5.5.0 & #>/dev/null 2>&1
 docker pull docker.elastic.co/elasticsearch/elasticsearch:5.5.0 & #>/dev/null 2>&1
-docker pull $NEXUS3/busybox >/dev/null & #2>&1
+docker pull $NEXUS3/busybox & #>/dev/null & #2>&1
 docker pull $NEXUS3/onap/msb/msb_discovery:latest & #>/dev/null 2>&1
 docker pull $NEXUS3/onap/msb/msb_apigateway:latest & #>/dev/null 2>&1
 docker pull $NEXUS3/openecomp/mso:1.1-STAGING-latest & #>/dev/null 2>&1
