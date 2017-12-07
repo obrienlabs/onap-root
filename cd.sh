@@ -224,7 +224,7 @@ FILEBEAT=$(kubectl get pods --all-namespaces -a | grep 2/)
 echo "${FILEBEAT}"
 echo "sleep 4 min - to allow rest frameworks to finish"
 sleep 240
-echo "run healthcheck 3 times to warm caches and frameworks so rest enpoints to report properly - see OOM-447"
+echo "run healthcheck 3 times to warm caches and frameworks so rest endpoints report properly - see OOM-447"
 
 #cd /dockerdata-nfs/onap/robot/
 # OOM-484 - robot scripts moved
