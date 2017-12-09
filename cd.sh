@@ -12,8 +12,7 @@ EOF
 
 deploy_onap() {
 echo "$(date)"
-echo "provide onap-parameters.yaml and prepull_docker.sh"
-#BRANCH=release-1.1.0
+echo "provide onap-parameters.yaml and aai-cloud-region-put.json"
 
 # fix virtual memory for onap-log:elasticsearch under Rancher 1.6.11 - OOM-431
 sudo sysctl -w vm.max_map_count=262144
@@ -36,23 +35,16 @@ sudo chmod -R 777 /dockerdata-nfs
 rm -rf /dockerdata-nfs/onap
 rm -rf oom
 
-#read -p "proc" yn
 echo "pull new oom"
 git clone -b $BRANCH http://gerrit.onap.org/r/oom
-# patch for OOM-420
 
-
-#set -a
 echo "start config pod"
 # still need to source docker variables
 source oom/kubernetes/oneclick/setenv.bash
 #echo "source setenv override"
-#./helm_apps.bash
-#echo "HELM_APPS: $HELM_APPS"
-#export HELM_APPS_MIN=('message-router' 'sdnc' 'vid' 'robot' 'portal' 'policy' 'appc' 'aai' 'sdc' 'log')
+echo "moving onap-parameters.yaml to oom/kubernetes/config"
 cp onap-parameters.yaml oom/kubernetes/config
 cd oom/kubernetes/config
-#cp onap-parameters-sample.yaml onap-parameters.yaml
 ./createConfig.sh -n onap
 cd ../../../
 
@@ -63,7 +55,7 @@ while [  $(kubectl get pods -n onap -a | grep config | grep 0/1 | grep Completed
     echo "waiting for config pod to complete"
 done
 
-echo "pre pull docker images"
+echo "pre pull docker images - 15+ min"
 
 if [ "$BRANCH" = "master" ]; then
     echo "pre pulling from master" # HACK
@@ -77,8 +69,8 @@ chmod 777 prepull_docker.sh
 ./prepull_docker.sh
 echo "start onap pods"
 cd oom/kubernetes/oneclick
+# we are not using this for now - to avoid fail fast helm issues during development testing helm 2.5+
 #./createAll.bash -n onap
-
 # workaround for OOM-448 - run independently
 ./createAll.bash -n onap -a consul
 ./createAll.bash -n onap -a msb
@@ -105,9 +97,9 @@ cd oom/kubernetes/oneclick
 
 cd ../../../
 
-echo "wait for all pods up for 10 min"
+echo "wait for all pods up for 15-22 min"
 FAILED_PODS_LIMIT=0
-MAX_WAIT_PERIODS=90 # 20 MIN
+MAX_WAIT_PERIODS=90 # 22 MIN
 COUNTER=0
 while [  $(kubectl get pods --all-namespaces | grep 0/ | wc -l) -gt $FAILED_PODS_LIMIT ]; do
     PENDING=$(kubectl get pods --all-namespaces | grep 0/ | wc -l)
@@ -219,7 +211,7 @@ fi
 echo "pending containers=${PENDING_COUNT}"
 echo "${PENDING}"
 
-echo "check filebeat 2/2 count"
+echo "check filebeat 2/2 count for ELK stack logging consumption"
 FILEBEAT=$(kubectl get pods --all-namespaces -a | grep 2/)
 echo "${FILEBEAT}"
 echo "sleep 4 min - to allow rest frameworks to finish"
@@ -233,11 +225,18 @@ echo "run healthcheck prep 1"
 ./ete-k8s.sh health > ~/health1.out
 echo "run healthcheck prep 2"
 ./ete-k8s.sh health > ~/health2.out
-echo "run healthcheck for real - wait a further 4 min"
-sleep 240
+echo "run healthcheck for real - wait a further 6 min"
+sleep 360
 ./ete-k8s.sh health 
 
 echo "run partial vFW"
+echo "curl with aai cert to cloud-region PUT"
+
+curl -X PUT https://127.0.0.1:30233/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne --data "@aai-cloud-region-put.json" -H "authorization: Basic TW9kZWxMb2FkZXI6TW9kZWxMb2FkZXI=" -H "X-TransactionId:jimmy-postman" -H "X-FromAppId:AAI" -H "Content-Type:application/json" -H "Accept:application/json" --cacert aaiapisimpledemoopenecomporg_20171003.crt -k
+
+echo "get the cloud region back"
+curl -X GET https://127.0.0.1:30233/aai/v11/cloud-infrastructure/cloud-regions/ -H "authorization: Basic TW9kZWxMb2FkZXI6TW9kZWxMb2FkZXI=" -H "X-TransactionId:jimmy-postman" -H "X-FromAppId:AAI" -H "Content-Type:application/json" -H "Accept:application/json" --cacert aaiapisimpledemoopenecomporg_20171003.crt -k
+
 sudo chmod 777 /dockerdata-nfs/onap
 ./demo-k8s.sh init
 
