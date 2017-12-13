@@ -17,7 +17,6 @@ echo "provide onap-parameters.yaml and aai-cloud-region-put.json"
 # fix virtual memory for onap-log:elasticsearch under Rancher 1.6.11 - OOM-431
 sudo sysctl -w vm.max_map_count=262144
 echo "remove existing oom"
-cd ~/
 source oom/kubernetes/oneclick/setenv.bash
 oom/kubernetes/oneclick/deleteAll.bash -n onap
 sleep 10
@@ -241,7 +240,7 @@ sudo chmod 777 /dockerdata-nfs/onap
 ./demo-k8s.sh init
 
 echo "report results"
-cd ~/
+cd ../../../
 echo "$(date)"
 #set +a
 }

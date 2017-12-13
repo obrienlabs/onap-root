@@ -11,7 +11,7 @@
   <url>http://maven.apache.org</url>
   
   <!-- 1.1.0/R1 specific (post Jun 2017) - current master 20170731 -->
-  <!-- note new repos are indended -->
+  <!-- note new repos are indented -->
   <!-- mvn clean install -U  -DskipTests=true -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -->
 
   <modules>
