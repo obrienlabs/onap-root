@@ -30,7 +30,7 @@ echo "sleeping 2 min"
 # keep jenkins 120 sec timeout happy with echos
 sleep 60
 echo " deleting /dockerdata-nfs"
-sudo chmod -R 777 /dockerdata-nfs
+sudo chmod -R 777 /dockerdata-nfs/onap
 rm -rf /dockerdata-nfs/onap
 rm -rf oom
 
@@ -55,14 +55,7 @@ while [  $(kubectl get pods -n onap -a | grep config | grep 0/1 | grep Completed
 done
 
 echo "pre pull docker images - 15+ min"
-
-if [ "$BRANCH" = "master" ]; then
-    echo "pre pulling from master" # HACK
-    curl https://jira.onap.org/secure/attachment/10742/prepull_docker_master.sh > prepull_docker.sh
-else
-    echo "pre pulling from ${BRANCH}"
-    curl https://jira.onap.org/secure/attachment/10741/prepull_docker_110.sh > prepull_docker.sh
-fi
+curl https://jira.onap.org/secure/attachment/10750/prepull_docker.sh > prepull_docker.sh
 
 chmod 777 prepull_docker.sh
 ./prepull_docker.sh
