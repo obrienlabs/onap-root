@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
   
   <!-- 1.1.0/R1 specific (post Jun 2017) - current master 20170731 -->
+  <!-- 20171227 updated --?
   <!-- note new repos are indented -->
   <!-- mvn clean install -U  -DskipTests=true -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -->
 
@@ -24,7 +25,8 @@
 <!--module>aai/babel</module--> <!-- empty -->
 <module>aai/champ</module>
 <!--module>aai/gizmo</module--> <!-- empty -->
-      <module>aai/aai-service</module>
+<!-- not compiling - deprecated lists.onap.org/pipermail/onap-discuss/2017-November/006191.html -->
+      <!--module>aai/aai-service</module-->
 <module>aai/data-router</module>
       <module>aai/logging-service</module>
       <module>aai/model-loader</module>
@@ -47,8 +49,8 @@
 <module>clamp</module>
 <module>cli</module>
 
-      <!-- all of dcae replaced by dcaegen2 ? TBD -->
-      <module>dcae/apod/analytics</module>
+      <!-- all of dcae replaced by dcaegen2 -->
+      <!--module>dcae/apod/analytics</module>
       <module>dcae/collectors/ves</module>
       <module>dcae/controller/analytics</module>
       <module>dcae/controller/dcae-controller-core</module>
@@ -59,7 +61,7 @@
       <module>dcae/dcae-inventory</module>
       <module>dcae/demo</module>
       <module>dcae/dmaapbc</module>
-      <module>dcae/operation/utils</module>
+      <module>dcae/operation/utils</module-->
 <!--module>dcaegen2/analytics</module>
 <module>dcaegen2/analytics/tca</module>
 <module>dcaegen2/collectors</module>
@@ -102,14 +104,17 @@
 
       <!--module>demo</module--> <!-- error in parent refs in sample_plugin -->
       <module>ecompsdkos/ecomp-sdk</module>
-      <module>mso</module>
-      <module>ncomp/cdap</module> <!-- emf resolution -->
+      <!-- replaced by so -->
+      <!--module>mso</module-->
+      <!-- ncomp deprecated -->
+      <!--module>ncomp/cdap</module>
       <module>ncomp/core</module>
       <module>ncomp/docker</module>
       <module>ncomp/maven</module>
       <module>ncomp/openstack</module>
 <module>ncomp/sirius/manager</module>
-      <module>ncomp/utils</module>
+      <module>ncomp/utils</module-->
+      <!-- oom is an infrastructure project -->
 <!--module>oom</module-->
 <!--module>policy/api</module>
 <module>policy/gui</module>
