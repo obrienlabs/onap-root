@@ -82,7 +82,7 @@
 <module>ccsdk/storage/pgaas</module-->
 <!--module>ci-management</module--> <!-- jenkins infrastructure -->
 <!-- requires docker daemon running -->
-<module>clamp</module>
+<!--module>clamp</module--> <!-- CLAMP-99 -->
 <module>cli</module>
 
       <!-- all of dcae replaced by dcaegen2 -->
@@ -212,17 +212,34 @@
       <module>ui/dmaapbc</module>
 <!--module>usecase-ui</module-->
       <module>vid</module>
+      <!--module>vfc/gvnfm/vnflcm</module>
+      <module>vfc/gvnfm/vnfmgr</module>
+      <module>vfc/gvnfm/vnfres</module>
+      <module>vfc/nfvo/catalog</module>
+      <module>vfc/nfvo/driver/ems</module>
+      <module>vfc/nfvo/driver/sfc</module>
+      <module>vfc/nfvo/driver/sfc/zte/sfc-driver</module>
+      <module>vfc/nfvo/driver/vnfm/gvnfm</module>
+      <module>vfc/nfvo/driver/vnfm/svnfm</module>
+      <module>vfc/nfvo/lcm</module>
+      <module>vfc/nfvo/resmanagement</module>
+      <module>vfc/nfvo/wfengine</module>
+      <module>vfc/nfvo/wfengine/wso2</module>
+      <module>vfc/nfvo/wfengine/activiti-extension</module>
+      <module>vfc/nfvo/wfengine/wfenginemgrservice</module-->
+
       <!--module>vnfsdk/functest</module--> <!-- VNFSDK-139 -->
+      <!-- vvp errors are missing nexus3 secret - VVP-41 -->
       <module>vnfsdk/lctest</module>
       <!--module>vnfsdk/refrepo</module-->
       <module>vnfsdk/validation</module>
-      <module>vvp/cms</module>
-      <module>vvp/engagementmgr</module>
+      <!--module>vvp/cms</module--> <!-- -->
+      <!--module>vvp/engagementmgr</module-->
       <module>vvp/gitlab</module>
-      <module>vvp/image-scanner</module>
-      <module>vvp/jenkins</module>
-      <module>vvp/portal</module>
-      <module>vvp/postgresql</module>
-      <module>vvp/test-engine</module>
+      <!--module>vvp/image-scanner</module-->
+      <!--module>vvp/jenkins</module-->
+      <!--module>vvp/portal</module-->
+      <!--module>vvp/postgresql</module-->
+      <!--module>vvp/test-engine</module-->
   </modules>
 </project>
