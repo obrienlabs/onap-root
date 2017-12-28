@@ -212,7 +212,7 @@
       <module>ui/dmaapbc</module>
 <!--module>usecase-ui</module-->
       <module>vid</module>
-      <!--module>vfc/gvnfm/vnflcm</module>
+      <module>vfc/gvnfm/vnflcm</module>
       <module>vfc/gvnfm/vnfmgr</module>
       <module>vfc/gvnfm/vnfres</module>
       <module>vfc/nfvo/catalog</module>
@@ -224,9 +224,9 @@
       <module>vfc/nfvo/lcm</module>
       <module>vfc/nfvo/resmanagement</module>
       <module>vfc/nfvo/wfengine</module>
-      <module>vfc/nfvo/wfengine/wso2</module>
+      <!--module>vfc/nfvo/wfengine/wso2</module--> <!-- VFC-628 -->
       <module>vfc/nfvo/wfengine/activiti-extension</module>
-      <module>vfc/nfvo/wfengine/wfenginemgrservice</module-->
+      <module>vfc/nfvo/wfengine/wfenginemgrservice</module>
 
       <!--module>vnfsdk/functest</module--> <!-- VNFSDK-139 -->
       <!-- vvp errors are missing nexus3 secret - VVP-41 -->
