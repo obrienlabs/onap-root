@@ -11,14 +11,47 @@
   <url>http://maven.apache.org</url>
   
   <!-- 1.1.0/R1 specific (post Jun 2017) - current master 20170731 -->
-  <!-- 20171227 updated --?
+  <!-- 20171227 updated -->
   <!-- note new repos are indented -->
   <!-- mvn clean install -U  -DskipTests=true -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -->
-
+  <build>
+      <plugins>
+          
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>2.6</version>
+              <executions>
+                  <execution>
+                      <id>copy-resources</id>
+                      <phase>validate</phase>
+                      <goals>
+                          <goal>copy-resources</goal>
+                      </goals>
+                      <configuration>
+                          <resources>
+                              <resource>
+                                  <directory>aai/logging-service</directory>
+                                  <filtering>false</filtering>
+                                  <includes>
+                                      <include>License.txt</include>
+                                  </includes>
+                              </resource>
+                          </resources>
+                          <outputDirectory>${project.build.directory}</outputDirectory>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+      </plugins>
+  </build>
+  
+  <!--copy file="aai/logging-service/License.txt" tofile="License.txt"/-->
   <modules>
-<!--module>aaf/authz</module>
+<module>aaf/authz</module>
 <module>aaf/cadi</module>
-<module>aaf/inno</module-->
+<module>aaf/inno</module>
+<module>aaf/luaplugin</module>
       <module>aai/aai-common</module> <!-- needs yang exclude -->
 <!--module>aai/aai-data</module--> <!-- chef cookbooks only -->
 <!--module>aai/aai-config</module--> <!-- chef cookbooks only -->
@@ -28,7 +61,7 @@
 <!-- not compiling - deprecated lists.onap.org/pipermail/onap-discuss/2017-November/006191.html -->
       <!--module>aai/aai-service</module-->
 <module>aai/data-router</module>
-      <module>aai/logging-service</module>
+      <module>aai/logging-service</module> <!-- AAI-568 -->
       <module>aai/model-loader</module>
       <module>aai/rest-client</module> <!-- include the onap staging nexus repo for common-logging:jar:1.0.0, org.openecomp.aai.logging-service:eelf-logging:jar:1.0.0, org.openecomp.aai.logging-service:logging-api:jar:1.0.0 -->
       <module>aai/router-core</module>
@@ -37,6 +70,7 @@
 <module>aai/sparky-fe</module>
 <!--module>aai/test-config</module--> <!-- no pom -->
 <module>aai/traversal</module>
+    <module>appc</module>
     <!--module>appc/deployment</module--> <!-- manual override input required -->
 <!-- ccsdk in common with sdnc -->
 <module>ccsdk/parent</module>
@@ -46,6 +80,8 @@
 <module>ccsdk/sli/plugins</module>
 <module>ccsdk/storage/esaas</module>
 <module>ccsdk/storage/pgaas</module-->
+<!--module>ci-management</module--> <!-- jenkins infrastructure -->
+<!-- requires docker daemon running -->
 <module>clamp</module>
 <module>cli</module>
 
@@ -79,31 +115,41 @@
 <module>dcaegen2/platform/registrator</module>
 <module>dcaegen2/platform/servicechange-handler</module>
 <module>dcaegen2/utils</module-->
-<!--module>dmaap/datarouter</module>
-<module>dmaap/messagerouter</module>
-<module>externalapi/nbi</module-->
-<!--module>holmes/common</module-->
-<!--module>holmes/dsa</module-->
-<!--module>holmes/engine-management</module-->
-<!--module>holmes/rule-management</module-->
+
+<module>dmaap/buscontroller</module>
+<!--module>dmaap/datarouter</module--> <!-- datarouter-prov error - DMAAP-201 -->
+<module>dmaap/dbcapi</module>
+<module>dmaap/messagerouter/dmaapclient</module>
+<module>dmaap/messagerouter/messageservice</module>
+<module>dmaap/messagerouter/mirroragent</module>
+<module>dmaap/messagerouter/msgrtr</module>
+
+<!--module>externalapi/nbi</module--> <!-- empty -->
+<module>holmes/common</module>
+<module>holmes/dsa</module>
+<module>holmes/engine-management</module>
+<module>holmes/rule-management</module>
 <!--module>integration</module-->
 <!--module>logging-analytics</module-->
 <!--module>modeling/toscaparsers</module>
-<module>modeling/yangvalidators</module>
+<module>modeling/yangvalidators</module-->
 <module>msb/apigateway</module>
 <module>msb/discovery</module>
-<module>multicloud/azure</module>
+<module>msb/java-sdk</module>
+<module>msb/swagger-sdk</module>
+<!--module>multicloud/azure</module--> <!-- empty -->
 <module>multicloud/framework</module>
 <module>multicloud/openstack</module>
 <module>multicloud/openstack/vmware</module>
-<module>multicloud/openstack/windriver</module-->
+<!--module>multicloud/openstack/kilo</module--> <!-- MULTICLOUD-134 parent pom is 1.1.0 not 1.2.0 -->
 <module>oparent</module>
 <!--module>optf/cmso</module>
 <module>optf/has</module>
 <module>optf/osdf</module-->
 
       <!--module>demo</module--> <!-- error in parent refs in sample_plugin -->
-      <module>ecompsdkos/ecomp-sdk</module>
+      <!-- locked see portal/sdk -->
+      <!--module>ecompsdkos/ecomp-sdk</module-->
       <!-- replaced by so -->
       <!--module>mso</module-->
       <!-- ncomp deprecated -->
@@ -116,10 +162,10 @@
       <module>ncomp/utils</module-->
       <!-- oom is an infrastructure project -->
 <!--module>oom</module-->
-<!--module>policy/api</module>
+<module>policy/api</module>
 <module>policy/gui</module>
 <module>policy/pap</module>
-<module>policy/pdp</module-->
+<module>policy/pdp</module>
       <module>policy/common</module>
       <module>policy/docker</module>
       <module>policy/drools-applications</module>
@@ -127,7 +173,7 @@
       <module>policy/engine</module>
       <!--module>portal/ecomp-portal-FE-common</module--> <!-- parent not referenced -->
       <module>portal</module>
-<!--module>portal/sdk</module-->
+<module>portal/sdk/ecomp-sdk</module>
       <!--module>sdc</module--> <!-- breakout root project--><!-- in catalog-be org/openrdf/sesame/sesame-rio-rdfjson/2.7.10/sesame-rio-rdfjson-2.7.10.jar; error in opening zip file-->
       <!-- in onboarding-ui-war of sdc/openecomp-ui onboarding-fe: Process: /tmp/nodejs/node-v7.5.0-darwin-x64/bin/node /tmp/nodejs/node_modules/webpack/bin/webpack terminated with 255-->
       <module>sdc/security-utils</module>
@@ -150,7 +196,8 @@
 <module>sdc/sdc-distribution-client</module>
 <!--module>sdc/sdc-workflow-designer</module-->
 <!--module>sdc/sdc-vnfdesign</module-->
-<module>sdc/sdc_common</module>
+<!-- deleted -->
+<!--module>sdc/sdc_common</module-->
 <!--module>sdnc/architecture</module>
 <module>sdnc/features</module>
 <module>sdnc/parent</module-->
@@ -165,60 +212,17 @@
       <module>ui/dmaapbc</module>
 <!--module>usecase-ui</module-->
       <module>vid</module>
+      <!--module>vnfsdk/functest</module--> <!-- VNFSDK-139 -->
+      <module>vnfsdk/lctest</module>
+      <!--module>vnfsdk/refrepo</module-->
+      <module>vnfsdk/validation</module>
+      <module>vvp/cms</module>
+      <module>vvp/engagementmgr</module>
+      <module>vvp/gitlab</module>
+      <module>vvp/image-scanner</module>
+      <module>vvp/jenkins</module>
+      <module>vvp/portal</module>
+      <module>vvp/postgresql</module>
+      <module>vvp/test-engine</module>
   </modules>
-  <!-- older June 2017 1.0.0/1.1.0-SNAPSHOT specific (pre R1)-->
-  <!--modules>
-    <module>aai/aai-common</module>
-    <module>aai/aai-service</module>
-    <module>aai/logging-service</module>
-    <module>aai/model-loader</module>
-    <module>aai/rest-client</module>
-    <module>aai/router-core</module>
-    <module>aai/search-data-service</module>
-    <module>dcae/apod/analytics</module>
-    <module>dcae/collectors/ves</module>
-    <module>dcae/controller/analytics</module>
-    <module>dcae/controller/dcae-controller-core</module>
-    <module>dcae/controller/dcae-controller-service/dcae-controller-service-dmaap-drsub</module>
-    <module>dcae/controller/dcae-controller-service-cdap</module>
-    <module>dcae/controller/dcae-controller-service-docker</module>
-    <module>dcae/controller/dcae-controller-service-vm</module>
-    <module>dcae/dcae-inventory</module>
-    <module>dcae/demo</module>
-    <module>dcae/dmaapbc</module>
-    <module>dcae/operation/utils</module>
-    <module>ecompsdkos/ecomp-sdk</module>
-    <module>mso</module>
-    <module>ncomp/cdap</module>
-    <module>ncomp/core</module>
-    <module>ncomp/docker</module>
-    <module>ncomp/maven</module>
-    <module>ncomp/openstack</module>
-    <module>ncomp/utils</module>
-    <module>policy/common</module>
-    <module>policy/docker</module>
-    <module>policy/drools-applications</module>
-    <module>policy/drools-pdp</module>
-    <module>policy/engine</module>
-    <module>portal</module>
-    <module>sdc/security-utils</module>
-    <module>sdc/common-app-api</module>
-    <module>sdc/common-be</module>
-    <module>sdc/catalog-dao</module>
-    <module>sdc/catalog-model</module>
-    <module>sdc/catalog-be</module>
-    <module>sdc/asdctool</module>
-    <module>sdc/catalog-ui</module>
-    <module>sdc/catalog-fe</module>
-    <module>sdc/asdc-tests</module>
-    <module>sdc/openecomp-be</module>
-    <module>sdc/sdc-os-chef</module>
-    <module>sdnc/adaptors</module>
-    <module>sdnc/core</module>
-    <module>sdnc/northbound</module>
-    <module>sdnc/oam</module>
-    <module>sdnc/plugins</module>
-    <module>ui/dmaapbc</module>
-    <module>vid</module>
-  </modules-->
 </project>
