@@ -286,7 +286,7 @@ cd ..
 # https://gerrit.onap.org/r/projects/?format=text
 
 #eval "$GIT_COMMAND/aaf"
-mkdir aaf
+mkdir aaf   
 cd aaf
 eval "$GIT_COMMAND/aaf/authz"
 eval "$GIT_COMMAND/aaf/cadi"

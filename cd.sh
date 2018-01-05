@@ -86,6 +86,7 @@ cd oom/kubernetes/oneclick
 ./createAll.bash -n onap -a aaf
 ./createAll.bash -n onap -a vfc
 ./createAll.bash -n onap -a kube2msb
+./createAll.bash -n onap -a esr
 
 cd ../../../
 
