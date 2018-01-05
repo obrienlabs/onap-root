@@ -18,7 +18,7 @@ echo "provide onap-parameters.yaml and aai-cloud-region-put.json"
 sudo sysctl -w vm.max_map_count=262144
 echo "remove existing oom"
 source oom/kubernetes/oneclick/setenv.bash
-oom/kubernetes/oneclick/deleteAll.bash -n onap
+oom/kubernetes/oneclick/deleteAll.bash -n onap -y yes
 sleep 10
 # verify
 DELETED=$(kubectl get pods --all-namespaces -a | grep 0/ | wc -l)
