@@ -18,17 +18,18 @@ echo "provide onap-parameters.yaml and aai-cloud-region-put.json"
 sudo sysctl -w vm.max_map_count=262144
 echo "remove existing oom"
 source oom/kubernetes/oneclick/setenv.bash
-oom/kubernetes/oneclick/deleteAll.bash -n onap -y yes
+# master/beijing only - not amsterdam
+oom/kubernetes/oneclick/deleteAll.bash -n onap -y
 sleep 10
 # verify
 DELETED=$(kubectl get pods --all-namespaces -a | grep 0/ | wc -l)
 
 helm delete --purge onap-config
 # wait for 0/1 before deleting
-echo "sleeping 2 min"
+echo "sleeping 1 min"
 # replace with watch
 # keep jenkins 120 sec timeout happy with echos
-sleep 60
+sleep 30
 echo " deleting /dockerdata-nfs"
 sudo chmod -R 777 /dockerdata-nfs/onap
 rm -rf /dockerdata-nfs/onap
@@ -55,8 +56,8 @@ while [  $(kubectl get pods -n onap -a | grep config | grep 0/1 | grep Completed
 done
 
 echo "pre pull docker images - 15+ min"
-curl https://jira.onap.org/secure/attachment/10750/prepull_docker.sh > prepull_docker.sh
-
+#curl https://jira.onap.org/secure/attachment/10750/prepull_docker.sh > prepull_docker.sh
+cp oom/kubernetes/config/prepull_docker.sh .
 chmod 777 prepull_docker.sh
 ./prepull_docker.sh
 echo "start onap pods"
