@@ -6,7 +6,7 @@ usage() {
   cat <<EOF
 Usage: $0 [PARAMs]
 -u                  : Display usage
--b [branch]         : branch = master or release-1.1.0 (required)
+-b [branch]         : branch = master or amsterdam (required)
 EOF
 }
 
@@ -18,8 +18,14 @@ echo "provide onap-parameters.yaml and aai-cloud-region-put.json"
 sudo sysctl -w vm.max_map_count=262144
 echo "remove existing oom"
 source oom/kubernetes/oneclick/setenv.bash
+
 # master/beijing only - not amsterdam
-oom/kubernetes/oneclick/deleteAll.bash -n onap -y
+if [ "$BRANCH" == "master" ]; then
+  oom/kubernetes/oneclick/deleteAll.bash -n onap -y
+else
+  oom/kubernetes/oneclick/deleteAll.bash -n onap
+fi
+
 sleep 10
 # verify
 DELETED=$(kubectl get pods --all-namespaces -a | grep 0/ | wc -l)
