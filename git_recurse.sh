@@ -1,6 +1,8 @@
 # F. Michael O'Brien
 # 20170523
 # WIP under construction for
+# https://wiki.onap.org/questions/users?username=michaelobrien
+# https://wiki.onap.org/display/DW/ONAP+on+Kubernetes
 # onap.org
 # currently transitioning clone to use repos (with various cd structure)
 # 20170531 add git clone https support (for users behind a firewall)

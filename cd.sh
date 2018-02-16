@@ -1,6 +1,15 @@
 # 20171030 CD SCRIPT to replace ONAP on a running VM
 # see INT-120
-#
+# F. Michael O'Brien
+# 20180124
+# WIP under construction for
+# https://wiki.onap.org/questions/users?username=michaelobrien
+# https://wiki.onap.org/display/DW/ONAP+on+Kubernetes
+# Amsterdam
+#     Rancher 1.6.10, Kubernetes 1.7.7, Kubectl 1.7.7, Helm 2.3.0, Docker 1.12
+# master
+#     Rancher 1.6.14, Kubernetes 1.8.6, Kubectl 1.8.6, Helm 2.6.0, Docker 17.3
+# see migration to onap under https://jira.onap.org/browse/OOM-710
 # do a chmod 777 on /dockerdata-nfs so e can delete the dir using the jenkins user
 usage() {
   cat <<EOF
