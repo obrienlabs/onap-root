@@ -98,7 +98,7 @@
       <module>dcae/demo</module>
       <module>dcae/dmaapbc</module>
       <module>dcae/operation/utils</module-->
-<!--module>dcaegen2/analytics</module>
+<module>dcaegen2/analytics</module>
 <module>dcaegen2/analytics/tca</module>
 <module>dcaegen2/collectors</module>
 <module>dcaegen2/collectors/snmptrap</module>
@@ -114,7 +114,7 @@
 <module>dcaegen2/platform/policy-handler</module>
 <module>dcaegen2/platform/registrator</module>
 <module>dcaegen2/platform/servicechange-handler</module>
-<module>dcaegen2/utils</module-->
+<module>dcaegen2/utils</module>
 
 <module>dmaap/buscontroller</module>
 <!--module>dmaap/datarouter</module--> <!-- datarouter-prov error - DMAAP-201 -->
@@ -130,7 +130,7 @@
 <module>holmes/engine-management</module>
 <module>holmes/rule-management</module>
 <!--module>integration</module-->
-<!--module>logging-analytics</module-->
+<module>logging-analytics</module>
 <!--module>modeling/toscaparsers</module>
 <module>modeling/yangvalidators</module-->
 <module>msb/apigateway</module>
