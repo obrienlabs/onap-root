@@ -1,3 +1,4 @@
+#! /bin/bash
 # 20171030 CD SCRIPT to replace ONAP on a running VM
 # see INT-120
 # F. Michael O'Brien

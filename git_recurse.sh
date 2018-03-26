@@ -1,3 +1,4 @@
+#! /bin/bash
 # F. Michael O'Brien
 # 20170523
 # WIP under construction for
