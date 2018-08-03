@@ -137,11 +137,18 @@ declare -a repos=(
 "integration/devtool"
 "integration/seccom"
 "logging-analytics"
+"logging-analytics/pomba/pomba-aai-context-builder"
+"logging-analytics/pomba/pomba-audit-common"
+"logging-analytics/pomba/pomba-context-aggregator"
+"logging-analytics/pomba/pomba-network-discovery-context-builder"
+"logging-analytics/pomba/pomba-sdc-context-builder"
+"logging-analytics/pomba/pomba-sdnc-context-builder"
 "modeling/modelspec"
 "modeling/toscaparsers"
 "msb/apigateway"
 "msb/discovery"
 "msb/java-sdk"
+"msb/service-mesh"
 "msb/swagger-sdk"
 "so"
 "so/chef-repo"
@@ -625,6 +632,16 @@ eval "$GIT_COMMAND/integration/devtool"
 eval "$GIT_COMMAND/integration/seccom"
 cd ../
 eval "$GIT_COMMAND/logging-analytics"
+cd logging-analytics
+mkdir pomba
+cd pomba
+eval "$GIT_COMMAND/logging-analytics/pomba/pomba-aai-context-builder"
+eval "$GIT_COMMAND/logging-analytics/pomba/pomba-audit-common"
+eval "$GIT_COMMAND/logging-analytics/pomba/pomba-context-aggregator"
+eval "$GIT_COMMAND/logging-analytics/pomba/pomba-network-discovery-context-builder"
+eval "$GIT_COMMAND/logging-analytics/pomba/pomba-sdc-context-builder"
+eval "$GIT_COMMAND/logging-analytics/pomba/pomba-sdnc-context-builder"
+cd ../../
 #eval "$GIT_COMMAND/modeling"
 mkdir modeling
 cd modeling
@@ -639,6 +656,8 @@ eval "$GIT_COMMAND/msb/apigateway"
 eval "$GIT_COMMAND/msb/discovery"
 eval "$GIT_COMMAND/msb/java-sdk"
 eval "$GIT_COMMAND/msb/swagger-sdk"
+eval "$GIT_COMMAND/msb/service-mesh"
+
 cd ../
 #eval "$GIT_COMMAND/multicloud"
 mkdir multicloud
