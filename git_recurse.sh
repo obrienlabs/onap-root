@@ -2,7 +2,6 @@
 # 20170523
 # WIP under construction for
 # https://wiki.onap.org/questions/users?username=michaelobrien
-# https://wiki.onap.org/display/DW/ONAP+on+Kubernetes
 # onap.org
 # currently transitioning clone to use repos (with various cd structure)
 # 20170531 add git clone https support (for users behind a firewall)
@@ -18,15 +17,20 @@ declare -a repos=(
 "aaf/cadi"
 "aaf/inno"
 "aaf/luaplugin"
+"aaf/sms"
+"aaf/sshsm"
 "aai/babel"
 "aai/champ"
-#"aai/data-router"
+"aai/aai-common"
+#"aai/aai-common-test" # no gerrit
+"aai/data-router"
 "aai/gizmo"
 "aai/esr-gui"
 "aai/esr-server"
-"aai/aai-data"
-"aai/aai-config"
-#"aai/aai-service"
+"aai/aai-data" # locked
+"aai/aai-config" # locked
+#"aai/aai-service" # locked
+"aai/eis"
 "aai/data-router"
 "aai/logging-service"
 "aai/model-loader"
@@ -38,7 +42,17 @@ declare -a repos=(
 "aai/sparky-fe"
 "aai/test-config"
 "aai/traversal"
+"aai/chameleon"
+"aai/event-client"
+"aai/gallifrey"
+"aai/gap"
+"aai/graphadmin"
+"aai/graphgraph"
+"aai/spike"
+"aai/tabular-data-service"
+"appc"
 "appc/deployment"
+"appc/cdt"
 "ccsdk/parent"
 #"ccsdk/sli"
 "ccsdk/dashboard"
@@ -54,10 +68,9 @@ declare -a repos=(
 "ccsdk/platform/nbapi"
 "ccsdk/platform/plugins"
 "ccsdk/utils"
-"ccsdk/dashboard"
-"ccsdk/distribution"
 "ci-management"
 "clamp"
+"cla"
 "cli"
 "oparent"
 "dcaegen2"
@@ -76,8 +89,11 @@ declare -a repos=(
 "dcaegen2/platform/inventory-api"
 "dcaegen2/platform/plugins"
 "dcaegen2/platform/policy-handler"
-"dcaegen2/platform/registrator"
+"dcaegen2/platform/registrator" # locked
 "dcaegen2/platform/servicechange-handler"
+"dcaegen2/services/heartbeat"
+"dcaegen2/services/mapper"
+"dcaegen2/services/prh"
 "dcaegen2/utils"
 #"dcae"
 #"dcae/apod"
@@ -118,6 +134,8 @@ declare -a repos=(
 "holmes/engine-management"
 "holmes/rule-management"
 "integration"
+"integration/devtool"
+"integration/seccom"
 "logging-analytics"
 "modeling/modelspec"
 "modeling/toscaparsers"
@@ -130,12 +148,15 @@ declare -a repos=(
 "so/docker-config"
 "so/libs"
 "so/so-config"
+"multicloud"
 "multicloud/azure"
 "multicloud/framework"
 "multicloud/openstack"
 #mkdir openstack
 "multicloud/openstack/vmware"
 "multicloud/openstack/windriver"
+"music"
+"music/distributed-kv-store"
 #"ncomp"
 #"ncomp/cdap"
 #"ncomp/core"
@@ -166,6 +187,12 @@ declare -a repos=(
 "sdc/sdc-docker-base"
 "sdc/sdc-workflow-designer"
 "sdc/sdc-titan-cassandra"
+"sdc/dcae-d/ci"
+"sdc/dcae-d/dt-be-main"
+"sdc/dcae-d/dt-be-property"
+"sdc/dcae-d/fe"
+"sdc/dcae-d/rule-engine"
+"sdc/dcae-d/tosca-lab"
 #"sdc/sdc_common"
 "sdc/jtosca"
 "sdc/sdc-tosca"
@@ -205,12 +232,14 @@ declare -a repos=(
 "vnfrqts/testcases"
 "vnfrqts/usecases"
 "vnfsdk/compliance"
+"vnfsdk/dovetail-integration"
 "vnfsdk/functest"
 "vnfsdk/lctest"
 "vnfsdk/model"
 "vnfsdk/pkgtools"
 "vnfsdk/refrepo"
 "vnfsdk/validation"
+"vnfsdk/ves-agent"
 "vvp/ansible-ice-bootstrap"
 "vvp/cms"
 "vvp/devkit"
@@ -275,8 +304,10 @@ actionClone() {
 mkdir aai
 cd aai
 eval "$GIT_COMMAND/aai/aai-common"
+#eval "$GIT_COMMAND/aai/aai-common-test"
 eval "$GIT_COMMAND/aai/aai-data"
 eval "$GIT_COMMAND/aai/aai-config"
+eval "$GIT_COMMAND/aai/eis"
 eval "$GIT_COMMAND/aai/aai-service"
 eval "$GIT_COMMAND/aai/data-router"
 eval "$GIT_COMMAND/aai/logging-service"
@@ -294,6 +325,7 @@ eval "$GIT_COMMAND/appc"
 mkdir appc
 cd appc
 eval "$GIT_COMMAND/appc/deployment"
+eval "$GIT_COMMAND/appc/cdt"
 cd ..
 eval "$GIT_COMMAND/ci-management"
 #eval "$GIT_COMMAND/dcae"
@@ -430,6 +462,8 @@ eval "$GIT_COMMAND/aaf/authz"
 eval "$GIT_COMMAND/aaf/cadi"
 eval "$GIT_COMMAND/aaf/inno"
 eval "$GIT_COMMAND/aaf/luaplugin"
+eval "$GIT_COMMAND/aaf/sms"
+eval "$GIT_COMMAND/aaf/sshsm"
 cd ../aai
 #eval "$GIT_COMMAND/aai/aai-common"
 #eval "$GIT_COMMAND/aai/aai-config"
@@ -453,6 +487,14 @@ eval "$GIT_COMMAND/aai/gizmo"
 #eval "$GIT_COMMAND/appc/deployment"
 eval "$GIT_COMMAND/aai/esr-gui"
 eval "$GIT_COMMAND/aai/esr-server"
+eval "$GIT_COMMAND/aai/chameleon"
+eval "$GIT_COMMAND/aai/event-client"
+eval "$GIT_COMMAND/aai/gallifrey"
+eval "$GIT_COMMAND/aai/gap"
+eval "$GIT_COMMAND/aai/graphadmin"
+eval "$GIT_COMMAND/aai/graphgraph"
+eval "$GIT_COMMAND/aai/spike"
+eval "$GIT_COMMAND/aai/tabular-data-service"
 cd ..
 mkdir ccsdk
 #eval "$GIT_COMMAND/ccsdk"
@@ -482,11 +524,11 @@ eval "$GIT_COMMAND/ccsdk/platform/nbapi"
 eval "$GIT_COMMAND/ccsdk/platform/plugins"
 cd ..
 eval "$GIT_COMMAND/ccsdk/utils"
-eval "$GIT_COMMAND/ccsdk/dashboard"
-eval "$GIT_COMMAND/ccsdk/distribution"
 
 #eval "$GIT_COMMAND/ci-management"
 cd ..
+eval "$GIT_COMMAND/cla"
+
 eval "$GIT_COMMAND/clamp"
 #eval "$GIT_COMMAND/dcae"
 #eval "$GIT_COMMAND/dcae/apod"
@@ -536,6 +578,12 @@ eval "$GIT_COMMAND/dcaegen2/platform/policy-handler"
 eval "$GIT_COMMAND/dcaegen2/platform/registrator"
 eval "$GIT_COMMAND/dcaegen2/platform/servicechange-handler"
 cd ..
+mkdir services
+cd services
+eval "$GIT_COMMAND/dcaegen2/services/heartbeat"
+eval "$GIT_COMMAND/dcaegen2/services/mapper"
+eval "$GIT_COMMAND/dcaegen2/services/prh"
+cd ..
 eval "$GIT_COMMAND/dcaegen2/utils"
 #eval "$GIT_COMMAND/demo"
 cd ..
@@ -572,6 +620,10 @@ eval "$GIT_COMMAND/holmes/engine-management"
 eval "$GIT_COMMAND/holmes/rule-management"
 cd ..
 eval "$GIT_COMMAND/integration"
+cd integration
+eval "$GIT_COMMAND/integration/devtool"
+eval "$GIT_COMMAND/integration/seccom"
+cd ../
 eval "$GIT_COMMAND/logging-analytics"
 #eval "$GIT_COMMAND/modeling"
 mkdir modeling
@@ -579,7 +631,7 @@ cd modeling
 eval "$GIT_COMMAND/modeling/modelspec"
 eval "$GIT_COMMAND/modeling/toscaparsers"
 #eval "$GIT_COMMAND/modeling/yangvalidators"
-cd ..
+cd ../
 #eval "$GIT_COMMAND/msb"
 mkdir msb
 cd msb
@@ -587,7 +639,7 @@ eval "$GIT_COMMAND/msb/apigateway"
 eval "$GIT_COMMAND/msb/discovery"
 eval "$GIT_COMMAND/msb/java-sdk"
 eval "$GIT_COMMAND/msb/swagger-sdk"
-cd ..
+cd ../
 #eval "$GIT_COMMAND/multicloud"
 mkdir multicloud
 cd multicloud
@@ -600,8 +652,13 @@ eval "$GIT_COMMAND/multicloud/openstack/vmware"
 eval "$GIT_COMMAND/multicloud/openstack/windriver"
 # aws
 cd ../../
+eval "$GIT_COMMAND/music"
+cd music
+eval "$GIT_COMMAND/music/distributed-kv-store"
+cd ../
 eval "$GIT_COMMAND/cli"
 eval "$GIT_COMMAND/oparent"
+#eval "$GIT_COMMAND/onap-cli" # no gerrit repo
 mkdir optf
 cd optf
 eval "$GIT_COMMAND/optf/cmso"
@@ -622,11 +679,27 @@ cd ../portal
 eval "$GIT_COMMAND/portal/sdk"
 #eval "$GIT_COMMAND/sdc"
 cd ../sdc
+mkdir dcae-d
+cd dcae-d
+eval "$GIT_COMMAND/sdc/dcae-d/ci"
+eval "$GIT_COMMAND/sdc/dcae-d/dt-be-main"
+eval "$GIT_COMMAND/sdc/dcae-d/dt-be-property"
+eval "$GIT_COMMAND/sdc/dcae-d/fe"
+eval "$GIT_COMMAND/sdc/dcae-d/rule-engine"
+eval "$GIT_COMMAND/sdc/dcae-d/tosca-lab"
+
+cd ../../sdc
 eval "$GIT_COMMAND/sdc/jtosca"
+eval "$GIT_COMMAND/sdc/onap-ui"
+
 #eval "$GIT_COMMAND/sdc/sdc-distribution-client"
 #eval "$GIT_COMMAND/sdc/sdc-titan-cassandra"
 eval "$GIT_COMMAND/sdc/sdc-tosca"
 #eval "$GIT_COMMAND/sdc/sdc_common"
+#eval "$GIT_COMMAND/sdc/sdc-vnfdesign" #
+eval "$GIT_COMMAND/sdc/sdc-workflow-designer"
+
+
 cd ../sdnc
 #eval "$GIT_COMMAND/sdnc/adaptors"
 eval "$GIT_COMMAND/sdnc/architecture"
@@ -699,12 +772,14 @@ cd ..
 mkdir vnfsdk
 cd vnfsdk
 eval "$GIT_COMMAND/vnfsdk/compliance"
+eval "$GIT_COMMAND/vnfsdk/dovetail-integration"
 eval "$GIT_COMMAND/vnfsdk/functest"
 eval "$GIT_COMMAND/vnfsdk/lctest"
 eval "$GIT_COMMAND/vnfsdk/model"
 eval "$GIT_COMMAND/vnfsdk/pkgtools"
 eval "$GIT_COMMAND/vnfsdk/refrepo"
 eval "$GIT_COMMAND/vnfsdk/validation"
+eval "$GIT_COMMAND/vnfsdk/ves-agent"
 cd ..
 #eval "$GIT_COMMAND/vvp"
 mkdir vvp

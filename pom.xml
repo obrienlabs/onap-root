@@ -52,7 +52,7 @@
 <module>aaf/cadi</module>
 <module>aaf/inno</module>
 <module>aaf/luaplugin</module>
-      <module>aai/aai-common</module> <!-- needs yang exclude -->
+      <!--module>aai/aai-common</module--> <!-- needs yang exclude --> <!-- 20180305 aai/aai-common/core - npi -->
 <!--module>aai/aai-data</module--> <!-- chef cookbooks only -->
 <!--module>aai/aai-config</module--> <!-- chef cookbooks only -->
 <!--module>aai/babel</module--> <!-- empty -->
@@ -61,9 +61,9 @@
 <!-- not compiling - deprecated lists.onap.org/pipermail/onap-discuss/2017-November/006191.html -->
       <!--module>aai/aai-service</module-->
 <module>aai/data-router</module>
-      <module>aai/logging-service</module> <!-- AAI-568 -->
-      <module>aai/model-loader</module>
-      <module>aai/rest-client</module> <!-- include the onap staging nexus repo for common-logging:jar:1.0.0, org.openecomp.aai.logging-service:eelf-logging:jar:1.0.0, org.openecomp.aai.logging-service:logging-api:jar:1.0.0 -->
+      <!--module>aai/logging-service</module--> <!-- AAI-568  and license.txt-->
+      <!--module>aai/model-loader</module--> <!-- 202803 entity -->
+      <!--module>aai/rest-client</module--> <!-- include the onap staging nexus repo for common-logging:jar:1.0.0, org.openecomp.aai.logging-service:eelf-logging:jar:1.0.0, org.openecomp.aai.logging-service:logging-api:jar:1.0.0  201803-->
       <module>aai/router-core</module>
       <module>aai/search-data-service</module>
 <module>aai/sparky-be</module>
@@ -98,10 +98,10 @@
       <module>dcae/demo</module>
       <module>dcae/dmaapbc</module>
       <module>dcae/operation/utils</module-->
-<module>dcaegen2/analytics</module>
+<!--module>dcaegen2/analytics</module--> <!-- https://jira.onap.org/browse/DCAEGEN2-381 -->
 <module>dcaegen2/analytics/tca</module>
-<module>dcaegen2/collectors</module>
-<module>dcaegen2/collectors/snmptrap</module>
+<!--module>dcaegen2/collectors</module-->
+<!--module>dcaegen2/collectors/snmptrap</module>
 <module>dcaegen2/collectors/ves</module>
 <module>dcaegen2/deployments</module>
 <module>dcaegen2/platform</module>
@@ -111,8 +111,8 @@
 <module>dcaegen2/platform/deployment-handler</module>
 <module>dcaegen2/platform/inventory-api</module>
 <module>dcaegen2/platform/plugins</module>
-<module>dcaegen2/platform/policy-handler</module>
-<module>dcaegen2/platform/registrator</module>
+<module>dcaegen2/platform/policy-handler</module-->
+<!--module>dcaegen2/platform/registrator</module-->
 <module>dcaegen2/platform/servicechange-handler</module>
 <module>dcaegen2/utils</module>
 
@@ -185,7 +185,7 @@
       <module>sdc/asdctool</module>
       <module>sdc/catalog-ui</module>
       <module>sdc/catalog-fe</module>
-      <module>sdc/asdc-tests</module>
+      <!--module>sdc/asdc-tests</module--> <!--201804 missing -->
       <!--module>sdc/ui-ci</module-->
       <module>sdc/openecomp-be</module>
       <!--module>sdc/openecomp-ui</module--> <!--onboarding-fe: Process: /tmp/nodejs/node-v7.5.0-darwin-x64/bin/node /tmp/nodejs/node_modules/webpack/bin/webpack terminated with 255-->
