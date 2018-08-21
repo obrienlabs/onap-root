@@ -114,7 +114,7 @@
 <module>dcaegen2/platform/policy-handler</module-->
 <!--module>dcaegen2/platform/registrator</module-->
 <module>dcaegen2/platform/servicechange-handler</module>
-<module>dcaegen2/utils</module>
+<!--module>dcaegen2/utils</module--> <!-- mvn-phase-script.sh will not run outside folder -->
 
 <module>dmaap/buscontroller</module>
 <!--module>dmaap/datarouter</module--> <!-- datarouter-prov error - DMAAP-201 -->
@@ -131,14 +131,22 @@
 <module>holmes/rule-management</module>
 <!--module>integration</module-->
 <module>logging-analytics</module>
+<module>logging-analytics/pomba/pomba-audit-common</module>
+<module>logging-analytics/pomba/pomba-aai-context-builder</module>
+<module>logging-analytics/pomba-context-aggregator</module>
+<module>logging-analytics/pomba/pomba-network-discovery-context-builder</module>
+<module>logging-analytics/pomba/pomba-sdc-context-builder</module>
+<module>logging-analytics/pomba/pomba-sdnc-context-builder</module>
+
 <!--module>modeling/toscaparsers</module>
 <module>modeling/yangvalidators</module-->
 <module>msb/apigateway</module>
 <module>msb/discovery</module>
 <module>msb/java-sdk</module>
 <module>msb/swagger-sdk</module>
+<module>msb/service-mesh</module>
 <!--module>multicloud/azure</module--> <!-- empty -->
-<module>multicloud/framework</module>
+<!--module>multicloud/framework</module--> <!-- expects sonar.sh -->
 <module>multicloud/openstack</module>
 <module>multicloud/openstack/vmware</module>
 <!--module>multicloud/openstack/kilo</module--> <!-- MULTICLOUD-134 parent pom is 1.1.0 not 1.2.0 -->
