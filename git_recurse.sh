@@ -278,7 +278,7 @@ pull() {
 clone() {
 	shift;
 	echo "clone for $@"
-	GIT_COMMAND="git clone ssh://$@@gerrit.openecomp.org:29418"
+	GIT_COMMAND="git clone ssh://$@@gerrit.onap.org:29418"
     actionClone
 }
 
@@ -333,6 +333,7 @@ mkdir appc
 cd appc
 eval "$GIT_COMMAND/appc/deployment"
 eval "$GIT_COMMAND/appc/cdt"
+eval "$GIT_COMMAND/appc/parent"
 cd ..
 eval "$GIT_COMMAND/ci-management"
 #eval "$GIT_COMMAND/dcae"
@@ -413,11 +414,18 @@ eval "$GIT_COMMAND/oom/registrator"
 cd ..
 mkdir policy
 cd policy
+eval "$GIT_COMMAND/policy/apex-pdp"
 eval "$GIT_COMMAND/policy/common"
+eval "$GIT_COMMAND/policy/core"
+eval "$GIT_COMMAND/policy/distribution"
 eval "$GIT_COMMAND/policy/docker"
 eval "$GIT_COMMAND/policy/drools-applications"
 eval "$GIT_COMMAND/policy/drools-pdp"
 eval "$GIT_COMMAND/policy/engine"
+eval "$GIT_COMMAND/policy/models"
+eval "$GIT_COMMAND/policy/parent"
+eval "$GIT_COMMAND/policy/xacml-pdp"
+
 cd ..
 eval "$GIT_COMMAND/portal"
 eval "$GIT_COMMAND/sdc"
@@ -477,21 +485,24 @@ cd ../aai
 #eval "$GIT_COMMAND/aai/aai-data"
 #eval "$GIT_COMMAND/aai/aai-service"
 eval "$GIT_COMMAND/aai/babel"
+eval "$GIT_COMMAND/aai/cacher"
+eval "$GIT_COMMAND/aai/chameleon"
 eval "$GIT_COMMAND/aai/champ"
 #eval "$GIT_COMMAND/aai/data-router"
+eval "$GIT_COMMAND/aai/enricher"
 eval "$GIT_COMMAND/aai/gizmo"
 #eval "$GIT_COMMAND/aai/logging-service"
 #eval "$GIT_COMMAND/aai/model-loader"
 #eval "$GIT_COMMAND/aai/resources"
 #eval "$GIT_COMMAND/aai/rest-client"
 #eval "$GIT_COMMAND/aai/router-core"
+eval "$GIT_COMMAND/aai/schema-service"
 #eval "$GIT_COMMAND/aai/search-data-service"
 #eval "$GIT_COMMAND/aai/sparky-be"
 #eval "$GIT_COMMAND/aai/sparky-fe"
+eval "$GIT_COMMAND/aai/validation"
 #eval "$GIT_COMMAND/aai/test-config"
 #eval "$GIT_COMMAND/aai/traversal"
-#eval "$GIT_COMMAND/appc"
-#eval "$GIT_COMMAND/appc/deployment"
 eval "$GIT_COMMAND/aai/esr-gui"
 eval "$GIT_COMMAND/aai/esr-server"
 eval "$GIT_COMMAND/aai/chameleon"
@@ -507,10 +518,12 @@ mkdir ccsdk
 #eval "$GIT_COMMAND/ccsdk"
 cd ccsdk
 eval "$GIT_COMMAND/ccsdk/parent"
+eval "$GIT_COMMAND/ccsdk/cds"
 #eval "$GIT_COMMAND/ccsdk/sli"
 eval "$GIT_COMMAND/ccsdk/dashboard"
 eval "$GIT_COMMAND/ccsdk/distribution"
 eval "$GIT_COMMAND/ccsdk/parent"
+eval "$GIT_COMMAND/ccsdk/features"
 mkdir sli
 cd sli
 eval "$GIT_COMMAND/ccsdk/sli/adaptors"
@@ -535,7 +548,7 @@ eval "$GIT_COMMAND/ccsdk/utils"
 #eval "$GIT_COMMAND/ci-management"
 cd ..
 eval "$GIT_COMMAND/cla"
-
+eval "$GIT_COMMAND/cli"
 eval "$GIT_COMMAND/clamp"
 #eval "$GIT_COMMAND/dcae"
 #eval "$GIT_COMMAND/dcae/apod"
@@ -565,11 +578,18 @@ cd dcaegen2
 eval "$GIT_COMMAND/dcaegen2/analytics"
 cd analytics
 eval "$GIT_COMMAND/dcaegen2/analytics/tca"
+eval "$GIT_COMMAND/dcaegen2/analytics/flink"
+eval "$GIT_COMMAND/dcaegen2/analytics/pnda"
+eval "$GIT_COMMAND/dcaegen2/analytics/tca-gen2"
 cd ..
 eval "$GIT_COMMAND/dcaegen2/collectors"
 cd collectors
 eval "$GIT_COMMAND/dcaegen2/collectors/snmptrap"
 eval "$GIT_COMMAND/dcaegen2/collectors/ves"
+eval "$GIT_COMMAND/dcaegen2/collectors/datafile"
+eval "$GIT_COMMAND/dcaegen2/collectors/hv-ves"
+eval "$GIT_COMMAND/dcaegen2/collectors/restconf"
+eval "$GIT_COMMAND/dcaegen2/collectors/snmptrap"
 cd ..
 eval "$GIT_COMMAND/dcaegen2/deployments"
 eval "$GIT_COMMAND/dcaegen2/platform"
@@ -589,6 +609,8 @@ mkdir services
 cd services
 eval "$GIT_COMMAND/dcaegen2/services/heartbeat"
 eval "$GIT_COMMAND/dcaegen2/services/mapper"
+eval "$GIT_COMMAND/dcaegen2/services/pm-mapper"
+eval "$GIT_COMMAND/dcaegen2/services/sdk"
 eval "$GIT_COMMAND/dcaegen2/services/prh"
 cd ..
 eval "$GIT_COMMAND/dcaegen2/utils"
@@ -599,6 +621,7 @@ mkdir dmaap
 cd dmaap
 eval "$GIT_COMMAND/dmaap/buscontroller"
 eval "$GIT_COMMAND/dmaap/dbcapi"
+eval "$GIT_COMMAND/dmaap/kafka11aaf"
 eval "$GIT_COMMAND/dmaap/datarouter"
 #eval "$GIT_COMMAND/dmaap/messagerouter"
 mkdir messagerouter
@@ -607,7 +630,7 @@ eval "$GIT_COMMAND/dmaap/messagerouter/dmaapclient"
 eval "$GIT_COMMAND/dmaap/messagerouter/messageservice"
 eval "$GIT_COMMAND/dmaap/messagerouter/mirroragent"
 eval "$GIT_COMMAND/dmaap/messagerouter/msgrtr"
-
+eval "$GIT_COMMAND/dmaap/zookeeper"
 cd ../..
 eval "$GIT_COMMAND/doc"
 mkdir doc
@@ -628,6 +651,8 @@ eval "$GIT_COMMAND/holmes/rule-management"
 cd ..
 eval "$GIT_COMMAND/integration"
 cd integration
+eval "$GIT_COMMAND/integration/csit"
+eval "$GIT_COMMAND/integration/benchmark"
 eval "$GIT_COMMAND/integration/devtool"
 eval "$GIT_COMMAND/integration/seccom"
 cd ../
@@ -663,6 +688,7 @@ cd ../
 mkdir multicloud
 cd multicloud
 eval "$GIT_COMMAND/multicloud/azure"
+eval "$GIT_COMMAND/multicloud/k8s"
 eval "$GIT_COMMAND/multicloud/framework"
 eval "$GIT_COMMAND/multicloud/openstack"
 #mkdir openstack
@@ -675,9 +701,11 @@ eval "$GIT_COMMAND/music"
 cd music
 eval "$GIT_COMMAND/music/distributed-kv-store"
 cd ../
-eval "$GIT_COMMAND/cli"
 eval "$GIT_COMMAND/oparent"
-#eval "$GIT_COMMAND/onap-cli" # no gerrit repo
+cd oparent
+eval "$GIT_COMMAND/oparent/cia"
+cd ../
+#eval "$GIT_COMMAND/onap-cli" # n gerrit repo
 mkdir optf
 cd optf
 eval "$GIT_COMMAND/optf/cmso"
@@ -697,7 +725,11 @@ eval "$GIT_COMMAND/policy/pdp"
 cd ../portal
 eval "$GIT_COMMAND/portal/sdk"
 #eval "$GIT_COMMAND/sdc"
-cd ../sdc
+cd ../
+eval "$GIT_COMMAND/sandbox"
+eval "$GIT_COMMAND/sandbox-2"
+
+cd sdc
 mkdir dcae-d
 cd dcae-d
 eval "$GIT_COMMAND/sdc/dcae-d/ci"
@@ -710,6 +742,9 @@ eval "$GIT_COMMAND/sdc/dcae-d/tosca-lab"
 cd ../../sdc
 eval "$GIT_COMMAND/sdc/jtosca"
 eval "$GIT_COMMAND/sdc/onap-ui"
+eval "$GIT_COMMAND/sdc/onap-ui-angular"
+eval "$GIT_COMMAND/sdc/onap-ui-common"
+eval "$GIT_COMMAND/sdc/onap-ui-react"
 
 #eval "$GIT_COMMAND/sdc/sdc-distribution-client"
 #eval "$GIT_COMMAND/sdc/sdc-titan-cassandra"
@@ -746,6 +781,9 @@ eval "$GIT_COMMAND/so/so-config"
 cd ..
 eval "$GIT_COMMAND/university"
 eval "$GIT_COMMAND/usecase-ui"
+cd usecase-ui
+eval "$GIT_COMMAND/usecase-ui/server"
+cd ../
 #eval "$GIT_COMMAND/vfc"
 mkdir vfc
 cd vfc
@@ -761,6 +799,7 @@ mkdir nfvo
 cd nfvo
 eval "$GIT_COMMAND/vfc/nfvo/catalog"
 #eval "$GIT_COMMAND/vfc/nfvo/driver"
+eval "$GIT_COMMAND/vfc/nfvo/db"
 mkdir driver
 cd driver
 eval "$GIT_COMMAND/vfc/nfvo/driver/ems"
@@ -793,6 +832,7 @@ cd vnfsdk
 eval "$GIT_COMMAND/vnfsdk/compliance"
 eval "$GIT_COMMAND/vnfsdk/dovetail-integration"
 eval "$GIT_COMMAND/vnfsdk/functest"
+eval "$GIT_COMMAND/vnfsdk/ice"
 eval "$GIT_COMMAND/vnfsdk/lctest"
 eval "$GIT_COMMAND/vnfsdk/model"
 eval "$GIT_COMMAND/vnfsdk/pkgtools"
